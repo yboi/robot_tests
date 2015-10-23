@@ -238,6 +238,7 @@ Set Multi Ids
   [return]  ${return_value}
 
 отримати інформацію про title
+  DEBUG
   ${return_value}=   Отримати тест із поля і показати на сторінці   title
   [return]  ${return_value}
 
