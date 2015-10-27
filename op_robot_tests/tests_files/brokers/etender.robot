@@ -50,9 +50,9 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Open Browser   ${USERS.users['${ARGUMENTS[0]}'].homepage}   ${USERS.users['${username}'].browser}   alias=${ARGUMENTS[0]}
   Set Window Size   @{USERS.users['${ARGUMENTS[0]}'].size}
   Set Window Position   @{USERS.users['${ARGUMENTS[0]}'].position}
-  Run Keyword If   '${username}' != 'E-tender_Viewer'   Login
+#  Run Keyword If   '${username}' != 'E-tender_Viewer'   Login
 
-Login
+#Login
   Wait Until Page Contains Element   id=inputUsername   10
   Input text   id=inputUsername      ${USERS.users['${username}'].login}
   Wait Until Page Contains Element   id=inputPassword   10
@@ -107,11 +107,11 @@ Login
   Input text    id=value                  ${budget}
   Click Element                     xpath=//div[contains(@class, 'form-group col-sm-6')]//input[@type='checkbox']
   Input text    id=minimalStep            ${step_rate}
-  Input text    id=itemsDescription       ${items_description}
-  Input text    id=itemsQuantity          ${quantity}
-  Input text    name=delStartDate         ${deliveryDate}
-  Sleep  2
-  Input text    xpath=//input[@ng-model='data.items[0].deliveryDate.endDate']         ${deliveryDate}
+  Input text    id=itemsDescription0       ${items_description}
+  Input text    id=itemsQuantity0          ${quantity}
+  Input text    name=delStartDate0         ${deliveryDate}
+  Wait Until Page Contains Element   xpath=//input[@ng-model='data.items[$index].deliveryDate.endDate']   10
+  Input text    xpath=//input[@ng-model='data.items[$index].deliveryDate.endDate']         ${deliveryDate}
   Run Keyword if   '${mode}' == 'multi'   Широта та довгота multi
   Run Keyword if   '${mode}' == 'single'   Широта та довгота single
   Click Element   xpath=//select[@name='region']//option[@label='Київська']
@@ -119,8 +119,8 @@ Login
   Click Element   xpath=//select[@name='city']//option[@label='Київ']
   Input text    name=addressStr   ${streetAddress}
   Input text    name=postIndex    ${postalCode}
-  Wait Until Page Contains Element    xpath=//select[@name="itemsUnit"]/option[@value='kilogram']
-  Click Element  xpath=//select[@name="itemsUnit"]/option[@value='kilogram']
+  Wait Until Page Contains Element    xpath=//select[@name="itemsUnit0"]/option[@value='kilogram']  10
+  Click Element  xpath=//select[@name="itemsUnit0"]/option[@value='kilogram']
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//input[@name='enqPEndDate']   ${enquiry_end_date}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//div[contains(@class, 'col-sm-2')]//input[@ng-model='data.enquiryPeriod.endDate']   ${enquiry_end_time}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//input[@name='startDate']   ${start_date}
@@ -128,46 +128,39 @@ Login
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//input[@name='endDate']   ${end_date}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//div[contains(@class, 'col-sm-2')]//input[@ng-model='data.tenderPeriod.endDate']   ${end_time}
   Sleep  2
-  Click Element   xpath=//div[contains(@class, 'col-sm-2')]//input[@data-target='#classification']
+  Click Element                      xpath=(//div[contains(@class, 'col-sm-2')]//input[@class="btn btn-danger"])
+  Wait Until Element Is Visible      xpath=//input[@ng-model="searchstring"]  10
   Sleep  1
   Input text      xpath=//div[contains(@class, 'modal-content')]//input[@ng-model='searchstring']   ${cpv}
   Sleep  2
   Wait Until Page Contains    ${cpv}
   Click Element   xpath=//td[contains(., '${cpv}')]
-  Sleep  1
-  Click Element   xpath=//div[contains(@class, 'modal-content')]//button[@ng-click='choose()']
+  Sleep  2
+  Click Element   xpath=//div[contains(@class, 'modal-content')]//button[@class="btn btn-default"]
   Sleep  1
   Додати предмет   ${items[0]}   0
   Run Keyword if   '${mode}' == 'multi'   Додати багато предметів   items
   Sleep  1
-  Wait Until Page Contains Element   xpath=//div[contains(@class, 'form-actions')]//button[@type='submit']
+  Wait Until Page Contains Element   xpath=//div[contains(@class, 'form-actions')]//button[@type='submit']   10
   Click Element   xpath=//div[contains(@class, 'form-actions')]//button[@type='submit']
   Sleep  1
   Wait Until Page Contains    [ТЕСТУВАННЯ]   10
   Sleep   70
   Click Element   xpath=//*[text()='${title}']
-  Sleep   5
-  ${tender_UAid}=  Get Text  xpath=//div[contains(@class, "panel-heading")]
+  Wait Until Page Contains Element   xpath=//div[contains(@class, "panel-heading")]   20
+  Sleep  2
+  ${tender_UAid}=  Get Text  xpath=//div[contains(@class, "panel-heading")]/h3
   ${tender_UAid}=  Get Substring  ${tender_UAid}   10
-  ${Ids}=   Convert To String   ${tender_UAid}
-  Run keyword if   '${mode}' == 'multi'   Set Multi Ids     ${tender_UAid}
-  [return]  ${Ids}
-
-Set Multi Ids
-  [Arguments]  @{ARGUMENTS}
-  [Documentation]
-  ...      ${ARGUMENTS[0]} ==  ${tender_UAid}
-  ${id}=    ${tender_UAid}
-  ${id}=    Get Substring  ${id}   10
-  ${Ids}=   Create List     ${tender_UAid}     ${id}
+  log  ${tender_UAid}
+  [return]  ${tender_UAid}
 
 Широта та довгота multi
   Input text    name=latitude             49.8500
   Input text    name=longitude            24.0167
 
 Широта та довгота single
-  Input text    name=latitude             ${latitude}
-  Input text    name=longitude            ${longitude}
+  Input text    name=latitude0             ${latitude}
+  Input text    name=longitude0            ${longitude}
 
 Додати предмет
   [Arguments]  @{ARGUMENTS}
@@ -177,12 +170,12 @@ Set Multi Ids
   ${dkpp_desc}=     Get From Dictionary   ${ARGUMENTS[0].additionalClassifications[0]}   description
   ${dkpp_id}=       Get From Dictionary   ${ARGUMENTS[0].additionalClassifications[0]}   id
   Sleep  2
-  Click Element                      xpath=(//div[contains(@class, 'col-sm-2')]//input[@data-target='#addClassification'])[${ARGUMENTS[1]}+1]
-  Wait Until Element Is Visible      xpath=//div[contains(@id,'addClassification')]
+  Click Element                      xpath=(//div[contains(@class, 'col-sm-2')]//input[@class="btn btn-danger"])[${ARGUMENTS[1]}+2]
   Sleep  2
-  Input text                         xpath=//div[contains(@class, 'modal fade ng-scope in')]//input[@ng-model='searchstring']    ${dkpp_desc}
-  Wait Until Page Contains   ${dkpp_id}
-  Sleep  1
+  Input text                         xpath=//div[@id='addClassification']//div[@class='modal-header']/input   ${dkpp_desc}
+  Sleep  2
+  Wait Until Page Contains   ${dkpp_id}   10
+  Sleep  2
   Click Element   xpath=//td[contains(., '${dkpp_id}')]
   Click Element                      xpath=//div[contains(@class, 'modal fade ng-scope in')]//button[@ng-click='choose()']
   Sleep  2
@@ -196,26 +189,19 @@ Set Multi Ids
   \   Click Element   xpath=.//*[@id='myform']/tender-form/div/button
   \   Додати предмет   ${items[${INDEX}]}   ${INDEX}
 
-#Завантажити документ
-#  [Arguments]  @{ARGUMENTS}
-#  [Documentation]
-#  ...    ${ARGUMENTS[0]} =  username
-#  ...    ${ARGUMENTS[1]} =  ${file_path}
-#  ...    ${ARGUMENTS[2]} =  ${TENDER_UAID}
+Завантажити документ
+  [Arguments]  @{ARGUMENTS}
+  [Documentation]
+  ...    ${ARGUMENTS[0]} =  username
+  ...    ${ARGUMENTS[1]} =  ${file_path}
+  ...    ${ARGUMENTS[2]} =  ${TENDER_UAID}
 #  ${filepath}=   local_path_to_file   TestDocument.docx
 #  Selenium2Library.Switch Browser   ${ARGUMENTS[0]}
 #  etender.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}    ${ARGUMENTS[2]}
 #  DEBUG
 #  Wait Until Page Contains Element   xpath=//button[text()="Завантажити"]    10
-#  Choose File   xpath=//button[text()="Завантажити"]      http://uploadhost.com/trades.csv
-
-Завантажити документ
-  [Arguments]  @{ARGUMENTS}
-  [Documentation]
-  ...      ${ARGUMENTS[0]} ==  username
-  ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
-  ...      ${ARGUMENTS[2]} ==  ${Complain}
-  Fail   Тест не написаний
+#  Choose File   xpath=//button[text()="Завантажити"]     ${filepath}
+  Fail   Поки не ралізовано тест
 
 Пошук тендера по ідентифікатору
   [Arguments]  @{ARGUMENTS}
@@ -225,9 +211,10 @@ Set Multi Ids
   ...      ${ARGUMENTS[2]} ==  id
   Selenium2Library.Switch browser   ${ARGUMENTS[0]}
   Go to   ${BROKERS['${USERS.users['${username}'].broker}'].url}
-  Wait Until Page Contains   Список закупівель    10
+#  Wait Until Page Contains   Список закупівель    10
   sleep  1
-  Input Text  jquery=input[ng-change='search()']  ${ARGUMENTS[1]}
+  Input Text   xpath=(//div[@class='input-group']/input)[1]   ${ARGUMENTS[1]}
+  Sleep  2
   Click Link  jquery=a[ng-click='search()']
   sleep  2
   Click Link    jquery=a[href^="#/tenderDetailes"]
@@ -303,6 +290,7 @@ Set Multi Ids
   Sleep  2
 
 обновити сторінку з тендером
+#Оновити сторінку з тендером
   [Arguments]  @{ARGUMENTS}
   [Documentation]
   ...      ${ARGUMENTS[0]} =  username
@@ -378,12 +366,13 @@ Set Multi Ids
   Run keyword if   '${TEST NAME}' != 'Можливість додати позицію закупівлі в тендер'   видалити позиції
 
 додати позицію
+  Sleep  2
   etender.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Sleep  2
   Click Element                     xpath=//a[@class='btn btn-primary ng-scope']
   Sleep  2
   : FOR    ${INDEX}    IN RANGE    1    ${ARGUMENTS[2]} +1
-  \   Click Element   xpath=.//*[@id='myform']/tender-form/div/button
+  \   Click Element   xpath=//form[@id='myform']/tender-form//button[@class='btn btn-lg btn-info']
   \   Додати предмет   ${items[${INDEX}]}   ${INDEX}
   Sleep  2
   Click Element   xpath=//div[@class='form-actions']/button[./text()='Зберегти зміни']
@@ -401,14 +390,13 @@ Set Multi Ids
   Click Element   xpath=//div[@class='form-actions']/button[./text()='Зберегти зміни']
   Wait Until Page Contains    [ТЕСТУВАННЯ]   10
 
-отримати інформацію із тендера
+Отримати інформацію із тендера
   [Arguments]  @{ARGUMENTS}
   [Documentation]
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  fieldname
   Switch browser   ${ARGUMENTS[0]}
-  ${return_value}=  run keyword  отримати інформацію про ${ARGUMENTS[1]}
-  Log  ${return_value}
+  ${return_value}=  run keyword  Отримати інформацію про ${ARGUMENTS[1]}
   [return]  ${return_value}
 
 Отримати тест із поля і показати на сторінці
@@ -418,22 +406,26 @@ Set Multi Ids
   ${return_value}=   Get Text  ${locator.${fieldname}}
   [return]  ${return_value}
 
-отримати інформацію про title
+#Отримати інформацію про tenderId
+#  ${return_value}=   Отримати тест із поля і показати на сторінці   tenderId
+#  [return]  ${return_value.split(' ')[1]}
+
+Отримати інформацію про title
   ${return_value}=   Отримати тест із поля і показати на сторінці   title
   [return]  ${return_value}
 
-отримати інформацію про description
+Отримати інформацію про description
   ${return_value}=   Отримати тест із поля і показати на сторінці   description
   [return]  ${return_value}
 
-отримати інформацію про minimalStep.amount
+Отримати інформацію про minimalStep.amount
   ${return_value}=   Отримати тест із поля і показати на сторінці   minimalStep.amount
   ${return_value}=   Convert To Number   ${return_value.split(' ')[0]}
   [return]  ${return_value}
 
-отримати інформацію про value.amount
+Отримати інформацію про value.amount
   ${return_value}=   Отримати тест із поля і показати на сторінці   value.amount
-  ${return_value}=   Evaluate   "".join("${return_value}".split(' ')[:-3])
+  ${return_value}=   Get Substring   ${return_value}   0   6
   ${return_value}=   Convert To Number   ${return_value}
   [return]  ${return_value}
 
@@ -444,31 +436,31 @@ Set Multi Ids
   sleep  1
   Remove element   ${last_note_id}
 
-отримати інформацію про tenderId
+Отримати інформацію про tenderId
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderId
   ${return_value}=   Get Substring  ${return_value}   10
   [return]  ${return_value}
 
-отримати інформацію про procuringEntity.name
+Отримати інформацію про procuringEntity.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   procuringEntity.name
   [return]  ${return_value}
 
-отримати інформацію про tenderPeriod.startDate
+Отримати інформацію про tenderPeriod.startDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderPeriod.startDate
   ${return_value}=   Change_date_to_month   ${return_value}
   [return]  ${return_value}
 
-отримати інформацію про tenderPeriod.endDate
+Отримати інформацію про tenderPeriod.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderPeriod.endDate
   ${return_value}=   Change_date_to_month   ${return_value}
   [return]  ${return_value}
 
-отримати інформацію про enquiryPeriod.startDate
+Отримати інформацію про enquiryPeriod.startDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.startDate
   ${return_value}=   Change_date_to_month   ${return_value}
   [return]  ${return_value}
 
-отримати інформацію про enquiryPeriod.endDate
+Отримати інформацію про enquiryPeriod.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.endDate
   ${return_value}=   Change_date_to_month   ${return_value}
   [return]  ${return_value}
@@ -483,94 +475,94 @@ Change_date_to_month
   ${return_value}=   Convert To String  ${month}${day}${year}
   [return]  ${return_value}
 
-отримати інформацію про items[0].description
+Отримати інформацію про items[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].description
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryLocation.latitude
+Отримати інформацію про items[0].deliveryLocation.latitude
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryLocation.latitude
   ${return_value}=   Get Substring  ${return_value}   0   10
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryLocation.longitude
+Отримати інформацію про items[0].deliveryLocation.longitude
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryLocation.longitude
   ${return_value}=   Get Substring  ${return_value}   12   22
   [return]  ${return_value}
 
-отримати інформацію про items[0].unit.name
+Отримати інформацію про items[0].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
   ${return_value}=  Get Substring  ${return_value}   5
   ${return_value}=   Run keyword if    '${return_value}' == 'кг.'   Convert To String   кілограм
   [return]  ${return_value}
 
-отримати інформацію про items[0].unit.code
+Отримати інформацію про items[0].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.code
   ${return_value}=   Get Substring  ${return_value}   5
   ${return_value}=   Run keyword if    '${return_value}' == 'кг.'   Convert To String  KGM
   [return]  ${return_value}
 
-отримати інформацію про items[0].quantity
+Отримати інформацію про items[0].quantity
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].quantity
   ${return_value}=   Get Substring  ${return_value}   0   4
   ${return_value}=   Convert To Number   ${return_value}
   [return]  ${return_value}
 
-отримати інформацію про items[0].classification.id
+Отримати інформацію про items[0].classification.id
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
   [return]  ${return_value.split(' ')[0]}
 
-отримати інформацію про items[0].classification.scheme
+Отримати інформацію про items[0].classification.scheme
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
   ${return_value}=   Get Substring  ${return_value}   0   -1
   [return]  ${return_value.split(' ')[1]}
 
-отримати інформацію про items[0].classification.description
+Отримати інформацію про items[0].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
   ${return_value}=   Get Substring  ${return_value}   11
   ${return_value}=   Run keyword if    '${return_value}' == 'Картонки'   Convert To String  Cartons
   [return]  ${return_value}
 
-отримати інформацію про items[0].additionalClassifications[0].id
+Отримати інформацію про items[0].additionalClassifications[0].id
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].id
   [return]  ${return_value.split(' ')[0]}
 
-отримати інформацію про items[0].additionalClassifications[0].scheme
+Отримати інформацію про items[0].additionalClassifications[0].scheme
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
   ${return_value}=   Get Substring  ${return_value}   0   -1
   [return]  ${return_value.split(' ')[1]}
 
-отримати інформацію про items[0].additionalClassifications[0].description
+Отримати інформацію про items[0].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].description
   ${return_value}=   Get Substring  ${return_value}   8   60
   ${return_value}=   Remove String   ${return_value}  "
   ${return_value}=   Convert To Lowercase   ${return_value}
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryAddress.postalCode
+Отримати інформацію про items[0].deliveryAddress.postalCode
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryAddress.postalCode
   ${return_value}=   Get Substring  ${return_value}   0   5
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryAddress.countryName
+Отримати інформацію про items[0].deliveryAddress.countryName
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryAddress.countryName
   ${return_value}=   Get Substring  ${return_value}   0   7
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryAddress.region
+Отримати інформацію про items[0].deliveryAddress.region
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryAddress.region
   ${return_value}=   Run keyword if    '${return_value}' == 'Київська,'   Convert To String  м. Київ
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryAddress.locality
+Отримати інформацію про items[0].deliveryAddress.locality
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryAddress.locality
   ${return_value}=   Run keyword if    '${return_value}' == 'Київ,'   Convert To String  м. Київ
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryAddress.streetAddress
+Отримати інформацію про items[0].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryAddress.streetAddress
   [return]  ${return_value}
 
-отримати інформацію про items[0].deliveryDate.endDate
+Отримати інформацію про items[0].deliveryDate.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryDate.endDate
   ${time}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.endDate
   ${time}=   Get Substring   ${time}   11
@@ -581,19 +573,19 @@ Change_date_to_month
   ${return_value}=   subtract_from_date   ${return_value}   6   0
   [return]  ${return_value}
 
-отримати інформацію про questions[0].title
-  ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].title
+Отримати інформацію про questions[0].title
+  ${return_value}=   Отримати тест із поля і показати на сторінці   questions[0].title
   [return]  ${return_value}
 
-отримати інформацію про questions[0].description
-  ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].description
+Отримати інформацію про questions[0].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці   questions[0].description
   [return]  ${return_value}
 
-отримати інформацію про questions[0].date
-  ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].date
+Отримати інформацію про questions[0].date
+  ${return_value}=   Отримати тест із поля і показати на сторінці   questions[0].date
   ${return_value}=   Change_date_to_month   ${return_value}
   [return]  ${return_value}
 
-отримати інформацію про questions[0].answer
-  ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].answer
+Отримати інформацію про questions[0].answer
+  ${return_value}=   Отримати тест із поля і показати на сторінці   questions[0].answer
   [return]  ${return_value}
