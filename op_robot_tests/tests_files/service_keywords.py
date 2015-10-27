@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -
 import os
 from munch import munchify, Munch, fromYAML
@@ -22,10 +21,17 @@ from .initial_data import (
 )
 import calendar
 
-TIMEZONE = timezone('Europe/Kiev')
+TZ = timezone(os.environ['TZ'] if 'TZ' in os.environ else 'Europe/Kiev')
+
+def get_now():
+    return datetime.now(TZ)
 
 def get_date():
-    return datetime.now().isoformat()
+	return get_now().isoformat()
+
+def get_file_contents(path):
+    with open(path, 'r') as f:
+        return unicode(f.read()) or u''
 
 def change_state(arguments):
     try:
@@ -39,21 +45,17 @@ def prepare_prom_test_tender_data():
     return munchify({'data': prom_test_tender_data()})
 
 def compare_date(data1, data2):
-    data1=parse(data1) 
+    data1=parse(data1)
     data2=parse(data2)
-    #LOGGER.log_message(Message("data1: {}".format(data1), "INFO"))
-    #LOGGER.log_message(Message("data2: {}".format(data2), "INFO"))
     if data1.tzinfo is None:
-        data1 = TIMEZONE.localize(data1)
-        print data1
+        data1 = TZ.localize(data1)
     if data2.tzinfo is None:
-        data2 = TIMEZONE.localize(data2)
-        print data2
+        data2 = TZ.localize(data2)
+
     delta = (data1-data2).total_seconds()
     if abs(delta) > 60:
-       print delta 
        return False
-    return True 
+    return True
 
 def log_object_data(data, file_name="", format="yaml"):
     if not isinstance(data, Munch):
@@ -88,9 +90,9 @@ def prepare_test_tender_data(period_interval=2, mode='single'):
         return munchify({'data': test_tender_data(period_interval=period_interval)})
     elif mode == 'multi':
         return munchify({'data': test_tender_data_multiple_lots(period_interval=period_interval)})
-    raise ValueError('A very specific bad thing happened') 
+    raise ValueError('A very specific bad thing happened')
 
-def run_keyword_and_ignore_keyword_definations(name, *args):
+def run_keyword_and_ignore_keyword_definitions(name, *args):
     """Runs the given keyword with given arguments and returns the status as a Boolean value.
     This keyword returns `True` if the keyword that is executed succeeds and
     `False` if it fails. This is useful, for example, in combination with
@@ -110,7 +112,7 @@ def run_keyword_and_ignore_keyword_definations(name, *args):
     return status, _
 
 def set_tender_periods(tender):
-    now = datetime.now()
+    now = get_now()
     tender.data.enquiryPeriod.endDate = (now + timedelta(minutes=2)).isoformat()
     tender.data.tenderPeriod.startDate = (now + timedelta(minutes=2)).isoformat()
     tender.data.tenderPeriod.endDate = (now + timedelta(minutes=4)).isoformat()
@@ -132,30 +134,18 @@ def get_from_object(obj, attribute):
         return return_list[0]
     return None
 
-#def wait_to_date(date_stamp):
-#    date = parse(date_stamp)
-#    LOGGER.log_message(Message("date: {}".format(date.isoformat()), "INFO"))
-#    now = datetime.now(tzlocal())
-#    LOGGER.log_message(Message("now: {}".format(now.isoformat()), "INFO"))
-#    wait_seconds = (date - now).total_seconds()
-#    wait_seconds += 2
-#    if wait_seconds < 0:
-#        return 0
-#    return wait_seconds
 
 def wait_to_date(date_stamp):
     date = parse(date_stamp)
-    print date
     LOGGER.log_message(Message("date: {}".format(date.isoformat()), "INFO"))
-    now = datetime.now(tzlocal())
-    print now
+    now = get_now()
     LOGGER.log_message(Message("now: {}".format(now.isoformat()), "INFO"))
-    if (date.isoformat() > now.isoformat()):
-        wait_seconds = (date - now).total_seconds()
-        wait_seconds += 2
-        print wait_seconds
-        return wait_seconds
-    else: return 0
+    wait_seconds = (date - now).total_seconds()
+    wait_seconds += 2
+    if wait_seconds < 0:
+        return 0
+    return wait_seconds
+
     
 
 ##GUI Frontends common

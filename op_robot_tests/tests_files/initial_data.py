@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -
+import os
+from pytz import timezone
 from datetime import datetime, timedelta
-now = datetime.now()
 from munch import munchify
 from faker import Factory
+from tempfile import NamedTemporaryFile
+
 fake = Factory.create('uk_UA')
 fake_ru = Factory.create('ru')
 fake_en = Factory.create()
-from tempfile import NamedTemporaryFile
+
+TZ = timezone(os.environ['TZ'] if 'TZ' in os.environ else 'Europe/Kiev')
+
+def get_now():
+    return datetime.now(TZ)
+
 
 def create_fake_doc():
     content = fake.text()
@@ -16,12 +24,12 @@ def create_fake_doc():
     return tf.name
 
 def test_tender_data(period_interval=2):
-  now = datetime.now()
+  now = get_now()
   return {
     "title": u"[ТЕСТУВАННЯ] " + fake.catch_phrase(),
     "mode": "test",
     "submissionMethodDetails": "quick",
-    "description": "Test tender1",  #Error @prom when 'Тестовый тендер' 
+    "description": "Test tender1",  #Error @prom when 'Тестовый тендер'
     "description_en": "Test tender",
     "description_ru": "Тестовый тендер",
     "procuringEntity": {
@@ -46,11 +54,11 @@ def test_tender_data(period_interval=2):
         }
     },
     "value": {
-        "amount": 50000, #Error @prom when float '50000.99' 
+        "amount": 50000, #Error @prom when float '50000.99'
         "currency": u"UAH"
     },
     "minimalStep": {
-        "amount": 100,   #Error @prom when float '100.1' 
+        "amount": 100,   #Error @prom when float '100.1'
         "currency": u"UAH"
     },
     "items": [
@@ -91,21 +99,21 @@ def test_tender_data(period_interval=2):
     ],
     "enquiryPeriod": {
         "startDate": (now).isoformat(),
-        "endDate": (now + timedelta(minutes=2)).isoformat()
+        "endDate": (now + timedelta(minutes=1)).isoformat()
     },
     "tenderPeriod": {
         "startDate": (now + timedelta(minutes=2)).isoformat(),
         "endDate": (now + timedelta(minutes=(2+period_interval))).isoformat()
     }
 }
-    
+
 def prom_test_tender_data():
-  now = datetime.now()
+  now = get_now()
   return {
     "title": fake.catch_phrase(),
     "mode": "test",
     "submissionMethodDetails": "quick",
-    "description": "Test tender1",  #Error @prom when 'Тестовый тендер' 
+    "description": "Test tender1",  #Error @prom when 'Тестовый тендер'
     "description_en": "Test tender",
     "description_ru": "Тестовый тендер",
     "procuringEntity": {
@@ -130,11 +138,11 @@ def prom_test_tender_data():
         }
     },
     "value": {
-        "amount": 50000, #Error @prom when float '50000.99' 
+        "amount": 50000, #Error @prom when float '50000.99'
         "currency": u"UAH"
     },
     "minimalStep": {
-        "amount": 100,   #Error @prom when float '100.1' 
+        "amount": 100,   #Error @prom when float '100.1'
         "currency": u"UAH"
     },
     "items": [
@@ -158,7 +166,7 @@ def prom_test_tender_data():
             "classification": {
                 "scheme": u"CPV",
                 "id": u"44617100-9",
-                "description": u"Cartons",
+                "description": u"Cartons"
             },
             "additionalClassifications": [
                 {
@@ -184,8 +192,8 @@ def prom_test_tender_data():
     }
 }
 
-def test_tender_data_multiple_lots(period_interval=2):  
-    now = datetime.now()
+def test_tender_data_multiple_lots(period_interval=2):
+    now = get_now()
     return {
       "title": fake.catch_phrase(),
       "mode": "test",
@@ -368,7 +376,7 @@ def test_tender_data_multiple_lots(period_interval=2):
         "startDate": (now + timedelta(minutes=2)).isoformat(),
         "endDate": (now + timedelta(minutes=(2+period_interval))).isoformat()
     }
-}    
+}
 
 def test_question_data():
     return munchify({
@@ -468,7 +476,7 @@ def test_bid_data():
             }
         }
     })
-        
+
 def auction_bid():
     return munchify({
         "data": {"value": {
