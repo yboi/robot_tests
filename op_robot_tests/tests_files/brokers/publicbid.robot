@@ -51,11 +51,6 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Set Window Position   @{USERS.users['${ARGUMENTS[0]}'].position}
 
 #  login
-<<<<<<< HEAD
-  Maximize Browser Window
-=======
-#  Maximize Browser Window
->>>>>>> w-be/candy
   Sleep  2
   Click Element             xpath=//*[text()='Реєстрація/Вхід']
   Sleep  2
@@ -140,11 +135,7 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Run Keyword if   '${mode}' == 'multi'   Додати багато предметів   items
   Click Element                       id=mForm:bSave
   # More smart wait for id is needed there.
-<<<<<<< HEAD
-  Sleep   5
-=======
   Sleep   20
->>>>>>> w-be/candy
   ${tender_UAid}=  Get Text           id=mForm:nBid
   ${tender_UAid}=  Get Substring  ${tender_UAid}  19
   ${Ids}       Convert To String  ${tender_UAid}

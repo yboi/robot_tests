@@ -1,12 +1,7 @@
 E-tender:
     keywords_file: etender
-<<<<<<< HEAD
-    url: http://bid.uat.e-tender.biz/#/
-    timout_on_wait:  15
-=======
     url: http://bid.uat.e-tender.biz/
     timeout_on_wait:  15
->>>>>>> w-be/candy
     period_interval: 2
 Prom:
     keywords_file: prom

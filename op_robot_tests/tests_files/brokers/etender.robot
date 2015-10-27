@@ -289,11 +289,7 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Click Element      xpath=//button[@class='btn-sm btn-success ng-isolate-scope']
   Sleep  2
 
-<<<<<<< HEAD
 обновити сторінку з тендером
-=======
-оновити сторінку з тендером
->>>>>>> w-be/candy
 #Оновити сторінку з тендером
   [Arguments]  @{ARGUMENTS}
   [Documentation]
