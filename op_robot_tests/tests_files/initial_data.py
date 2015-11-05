@@ -23,6 +23,310 @@ def create_fake_doc():
     tf.close()
     return tf.name
 
+def Front_end_initial_data(period_interval=2):
+  now = get_now()
+  return {
+    "title": u"[ТЕСТУВАННЯ] " + fake.catch_phrase(),
+    "mode": "test",
+    "submissionMethodDetails": "quick",
+    "description": "Test tender1",
+    "description_en": "Test tender",
+    "description_ru": "Тестовый тендер",
+    "procuringEntity": {
+        "name": u"Повна назва невідомо чого",
+        "name_ru": fake_ru.company(),
+        "name_en": fake_en.company(),
+        "identifier": {
+            "scheme": u"UA-EDR",
+            "id": u"0000{}".format(fake.pyint()),
+            "uri": fake.image_url(width=None, height=None)
+        },
+        "address": {
+            "countryName": u"Україна",
+            "postalCode": fake.postalcode(),
+            "region": u"Львівська",
+            "locality": u"Новояворівське",
+            "streetAddress": fake.street_address()
+        },
+        "contactPoint": {
+            "name": fake.name(),
+            "telephone": fake.phone_number()
+        }
+    },
+    "value": {
+        "amount": 60000,
+        "currency": u"UAH"
+    },
+    "minimalStep": {
+        "amount": 200,
+        "currency": u"UAH"
+    },
+    "items": [
+        {
+            "description": fake.catch_phrase(),
+            "deliveryDate": {
+                "endDate": (now + timedelta(days=5)).isoformat()
+            },
+            "deliveryLocation": {
+                "latitude": u"49.5548",
+                "longitude": u"23.3424"
+            },
+            "deliveryAddress": {
+                "countryName": u"Україна",
+                "postalCode": fake.postalcode(),
+                "region": u"Львівська",
+                "locality": u"Новояворівське",
+                "streetAddress": fake.street_address()
+            },
+            "classification": {
+                "scheme": u"CPV",
+                "id": u"42942000-1",
+                "description": u"Печі пекарські та комплектуючі до них"
+            },
+            "additionalClassifications": [
+                {
+                    "scheme": u"ДКПП",
+                    "id": u"27.51.28-70.00",
+                    "description": u"Електропечі побутові для вмонтовування"
+                }
+            ],
+            "unit": {
+                "name": u"кг.",
+                "code": u"кг."
+            },
+            "quantity": fake.pyint()
+        }
+    ],
+    "enquiryPeriod": {
+        "startDate": (now).isoformat(),
+        "endDate": (now + timedelta(minutes=12)).isoformat()
+    },
+    "tenderPeriod": {
+        "startDate": (now + timedelta(minutes=13)).isoformat(),
+        "endDate": (now + timedelta(minutes=20)).isoformat()
+    }
+}
+
+def Front_end_initial_data_multiple_lots(period_interval=2):
+  now = get_now()
+  return {
+    "title": u"[ТЕСТУВАННЯ] " + fake.catch_phrase(),
+    "mode": "test",
+    "submissionMethodDetails": "quick",
+    "description": "Test tender1",
+    "description_en": "Test tender",
+    "description_ru": "Тестовый тендер",
+    "procuringEntity": {
+        "name": u"Повна назва невідомо чого",
+        "name_ru": fake_ru.company(),
+        "name_en": fake_en.company(),
+        "identifier": {
+            "scheme": u"UA-EDR",
+            "id": u"0000{}".format(fake.pyint()),
+            "uri": fake.image_url(width=None, height=None)
+        },
+        "address": {
+            "countryName": u"Україна",
+            "postalCode": fake.postalcode(),
+            "region": u"Львівська",
+            "locality": u"Новояворівське",
+            "streetAddress": fake.street_address()
+        },
+        "contactPoint": {
+            "name": fake.name(),
+            "telephone": fake.phone_number()
+        }
+    },
+    "value": {
+        "amount": 60000,
+        "currency": u"UAH"
+    },
+    "minimalStep": {
+        "amount": 200,
+        "currency": u"UAH"
+    },
+    "items": [
+        {
+            "description": fake.catch_phrase(),
+            "deliveryDate": {
+                "endDate": (now + timedelta(days=5)).isoformat()
+            },
+            "deliveryLocation": {
+                "latitude": u"46.3707",
+                "longitude": u"31.3221"
+            },
+            "deliveryAddress": {
+                "countryName": u"Україна",
+                "postalCode": fake.postalcode(),
+                "region": u"Миколаївська",
+                "locality": u"Очаків",
+                "streetAddress": fake.street_address()
+            },
+            "classification": {
+                "scheme": u"CPV",
+                "id": u"42942000-1",
+                "description": u"Печі пекарські та комплектуючі до них"
+            },
+            "additionalClassifications": [
+                {
+                    "scheme": u"ДКПП",
+                    "id": u"27.51.28-70.00",
+                    "description": u"Електропечі побутові для вмонтовування"
+                }
+            ],
+            "unit": {
+                "name": u"кг.",
+                "code": u"кг."
+            },
+            "quantity": fake.pyint()
+        },
+    {
+            "description": fake.catch_phrase(),
+            "deliveryDate": {
+                "endDate": (now + timedelta(days=5)).isoformat()
+            },
+            "deliveryLocation": {
+                "latitude": u"50.4452",
+                "longitude": u"25.1928"
+            },
+            "deliveryAddress": {
+                "countryName": u"Україна",
+                "postalCode": fake.postalcode(),
+                "region": u"Волинська",
+                "locality": u"Луцьк",
+                "streetAddress": fake.street_address()
+            },
+            "classification": {
+                "scheme": u"CPV",
+                "id": u"42942000-1",
+                "description": u"Печі пекарські та комплектуючі до них"
+            },
+            "additionalClassifications": [
+                {
+                    "scheme": u"ДКПП",
+                    "id": u"27.51.27-00.00",
+                    "description": u"Печі мікрохвильові"
+                }
+            ],
+            "unit": {
+                "name": u"кг.",
+                "code": u"кг."
+            },
+            "quantity": fake.pyint()
+        },
+    {
+            "description": fake.catch_phrase(),
+            "deliveryDate": {
+                "endDate": (now + timedelta(days=5)).isoformat()
+            },
+            "deliveryLocation": {
+                "latitude": u"47.2832",
+                "longitude": u"36.1634"
+            },
+            "deliveryAddress": {
+                "countryName": u"Україна",
+                "postalCode": fake.postalcode(),
+                "region": u"Запорізька",
+                "locality": u"Пологи",
+                "streetAddress": fake.street_address()
+            },
+            "classification": {
+                "scheme": u"CPV",
+                "id": u"42942000-1",
+                "description": u"Печі пекарські та комплектуючі до них"
+            },
+            "additionalClassifications": [
+                {
+                    "scheme": u"ДКПП",
+                    "id": u"27.51.28-50.00",
+                    "description": u"Грилі та ростери електричні побутові"
+                }
+            ],
+            "unit": {
+                "name": u"кг.",
+                "code": u"кг."
+            },
+            "quantity": fake.pyint()
+        },
+    {
+            "description": fake.catch_phrase(),
+            "deliveryDate": {
+                "endDate": (now + timedelta(days=5)).isoformat()
+            },
+            "deliveryLocation": {
+                "latitude": u"49.1258",
+                "longitude": u"29.0322"
+            },
+            "deliveryAddress": {
+                "countryName": u"Україна",
+                "postalCode": fake.postalcode(),
+                "region": u"Вінницька",
+                "locality": u"Липовець",
+                "streetAddress": fake.street_address()
+            },
+            "classification": {
+                "scheme": u"CPV",
+                "id": u"42942000-1",
+                "description": u"Печі пекарські та комплектуючі до них"
+            },
+            "additionalClassifications": [
+                {
+                    "scheme": u"ДКПП",
+                    "id": u"27.51.28-33.00",
+                    "description": u"Панелі з електронагрівальними елементами побутові для вмонтовування"
+                }
+            ],
+            "unit": {
+                "name": u"кг.",
+                "code": u"кг."
+            },
+            "quantity": fake.pyint()
+        },
+    {
+            "description": fake.catch_phrase(),
+            "deliveryDate": {
+                "endDate": (now + timedelta(days=5)).isoformat()
+            },
+            "deliveryLocation": {
+                "latitude": u"50.2128",
+                "longitude": u"33.1557"
+            },
+            "deliveryAddress": {
+                "countryName": u"Україна",
+                "postalCode": fake.postalcode(),
+                "region": u"Полтавська",
+                "locality": u"Лохвиця",
+                "streetAddress": fake.street_address()
+            },
+            "classification": {
+                "scheme": u"CPV",
+                "id": u"42942000-1",
+                "description": u"Печі пекарські та комплектуючі до них"
+            },
+            "additionalClassifications": [
+                {
+                    "scheme": u"ДКПП",
+                    "id": u"27.51.28-33.00",
+                    "description": u"Панелі з електронагрівальними елементами побутові для вмонтовування"
+                }
+            ],
+            "unit": {
+                "name": u"кг.",
+                "code": u"кг."
+            },
+            "quantity": fake.pyint()
+        }
+    ],
+    "enquiryPeriod": {
+        "startDate": (now).isoformat(),
+        "endDate": (now + timedelta(minutes=12)).isoformat()
+    },
+    "tenderPeriod": {
+        "startDate": (now + timedelta(minutes=13)).isoformat(),
+        "endDate": (now + timedelta(minutes=20)).isoformat()
+    }
+}
+
 def test_tender_data(period_interval=2):
   now = get_now()
   return {

@@ -17,7 +17,7 @@ import time
 from .initial_data import (
     test_tender_data, test_question_data, test_question_answer_data,
     test_bid_data, test_award_data, test_complaint_data, test_complaint_reply_data, test_tender_data_multiple_lots,
-    auction_bid, prom_test_tender_data, create_fake_doc
+    auction_bid, prom_test_tender_data, create_fake_doc, Front_end_initial_data, Front_end_initial_data_multiple_lots
 )
 import calendar
 
@@ -85,6 +85,13 @@ def load_initial_data_from(file_name):
         elif file_name.endswith(".yaml"):
             return fromYAML(file_obj)
 
+def prepare_Front_end_initial_data(period_interval=2, mode='single'):
+    if mode == 'single':
+        return munchify({'data': Front_end_initial_data(period_interval=period_interval)})
+    elif mode == 'multi':
+        return munchify({'data': Front_end_initial_data_multiple_lots(period_interval=period_interval)})
+    raise ValueError('A very specific bad thing happened')
+
 def prepare_test_tender_data(period_interval=2, mode='single'):
     if mode == 'single':
         return munchify({'data': test_tender_data(period_interval=period_interval)})
@@ -146,21 +153,19 @@ def wait_to_date(date_stamp):
         return 0
     return wait_seconds
 
-    
-
 ##GUI Frontends common
 def convert_date_to_slash_format(isodate):
     iso_dt=parse_date(isodate)
     date_string = iso_dt.strftime("%d/%m/%Y")
     return  date_string
 
-def Add_data_for_GUI_FrontEnds(INITIAL_TENDER_DATA):
-    now = datetime.now() 
-    INITIAL_TENDER_DATA.data.enquiryPeriod['startDate'] = (now + timedelta(minutes=0)).isoformat()
-    INITIAL_TENDER_DATA.data.enquiryPeriod['endDate'] = (now + timedelta(minutes=6)).isoformat()
-    INITIAL_TENDER_DATA.data.tenderPeriod['startDate'] = (now + timedelta(minutes=7)).isoformat()
-    INITIAL_TENDER_DATA.data.tenderPeriod['endDate'] = (now + timedelta(minutes=20)).isoformat()
-    return INITIAL_TENDER_DATA
+#def Add_data_for_GUI_FrontEnds(INITIAL_TENDER_DATA):
+#    now = datetime.now() 
+#    INITIAL_TENDER_DATA.data.enquiryPeriod['startDate'] = (now + timedelta(minutes=0)).isoformat()
+#    INITIAL_TENDER_DATA.data.enquiryPeriod['endDate'] = (now + timedelta(minutes=6)).isoformat()
+#    INITIAL_TENDER_DATA.data.tenderPeriod['startDate'] = (now + timedelta(minutes=7)).isoformat()
+#    INITIAL_TENDER_DATA.data.tenderPeriod['endDate'] = (now + timedelta(minutes=20)).isoformat()
+#    return INITIAL_TENDER_DATA
 
 def local_path_to_file(file_name):
     path = os.getcwd()
@@ -192,10 +197,6 @@ def convert_time_to_etender_format(isodate):
     iso_dt=parse_date(isodate)
     time_string = iso_dt.strftime("%H:%M")
     return  time_string
-
-def procuringEntity_name(INITIAL_TENDER_DATA):
-    INITIAL_TENDER_DATA.data.procuringEntity['name'] = u"Повна назва невідомо чого"
-    return INITIAL_TENDER_DATA
 
 ##Newtend
 def newtend_date_picker_index(isodate):

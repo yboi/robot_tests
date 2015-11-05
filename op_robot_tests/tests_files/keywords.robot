@@ -58,8 +58,13 @@ TestSuiteSetup
   Set Global Variable  ${INITIAL_TENDER_DATA}
   ${TENDER}=  Create Dictionary
   Set Global Variable  ${TENDER}
+  Run Keyword If   '${USERS.users['${tender_owner}'].broker}' != 'Quinta'    Дані для майданчиків
   Log  ${TENDER}
   Log  ${INITIAL_TENDER_DATA}
+
+Дані для майданчиків
+  ${INITIAL_TENDER_DATA}=  prepare_Front_end_initial_data   ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   ${mode}
+  Set Global Variable  ${INITIAL_TENDER_DATA}
 
 Завантажуємо бібліотеку з реалізацією ${keywords_file} майданчики
   Import Resource  ${CURDIR}/brokers/${keywords_file}.robot
@@ -168,7 +173,7 @@ SwitchState
   Run Keyword If   ${wait_timeout}>0   Sleep  ${wait_timeout}
 
 Дочекатись дати початку прийому пропозицій
-  Дочекатись дати  ${TENDER_DATA.data.tenderPeriod.startDate}
+  Дочекатись дати  ${INITIAL_TENDER_DATA.data.tenderPeriod.startDate}
 
 Дочекатись дати закінчення прийому пропозицій
   Дочекатись дати  ${INITIAL_TENDER_DATA.data.tenderPeriod.endDate}
