@@ -4,6 +4,7 @@ Library  String
 Library  DateTime
 
 *** Variables ***
+${UAID}                                                        xpath=//div[contains(@class, "panel-heading")]/h3
 ${locator.tenderId}                                            jquery=h3
 ${locator.title}                                               jquery=tender-subject-info>div.row:contains("Назва закупівлі:")>:eq(1)>
 ${locator.description}                                         jquery=tender-subject-info>div.row:contains("Детальний опис закупівлі:")>:eq(1)>
@@ -165,7 +166,7 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Click Element   xpath=//*[text()='${title}']
   Wait Until Page Contains Element   xpath=//div[contains(@class, "panel-heading")]   20
   Sleep  2
-  ${tender_UAid}=  Get Text  xpath=//div[contains(@class, "panel-heading")]/h3
+  ${tender_UAid}=  Get Text  ${UAID}
   ${tender_UAid}=  Get Substring  ${tender_UAid}   10
   [return]  ${tender_UAid}
 
@@ -465,14 +466,15 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
 
 Отримати інформацію про value.amount
   ${return_value}=   Отримати тест із поля і показати на сторінці   value.amount
-  ${return_value}=   Get Substring   ${return_value}   0   6
-  ${return_value}=   Convert To Number   ${return_value}
+#  ${return_value}=   Get Substring   ${return_value}   0   6
+  ${return_value}=   Convert To Number   ${return_value.split(' ')[0]}
+#  ${return_value}=   Convert To Number   ${return_value}
   [return]  ${return_value}
 
 Отримати інформацію про tenderId
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderId
-  ${return_value}=   Get Substring  ${return_value}   10
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   10
+  [return]  ${return_value.split(' ')[1]}
 
 Отримати інформацію про procuringEntity.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   procuringEntity.name
@@ -698,28 +700,28 @@ Change_day_to_month
 #1
 Отримати інформацію про items[0].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-  ${return_value}=   Get Substring  ${return_value}   11
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   11
+  [return]  ${return_value.split(' ',1)[1]}
 #2
 Отримати інформацію про items[1].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-  ${return_value}=   Get Substring  ${return_value}   11
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   11
+  [return]  ${return_value.split(' ',1)[1]}
 #3
 Отримати інформацію про items[2].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-  ${return_value}=   Get Substring  ${return_value}   11
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   11
+  [return]  ${return_value.split(' ',1)[1]}
 #4
 Отримати інформацію про items[3].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-  ${return_value}=   Get Substring  ${return_value}   11
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   11
+  [return]  ${return_value.split(' ',1)[1]}
 #5
 Отримати інформацію про items[4].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-  ${return_value}=   Get Substring  ${return_value}   11
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   11
+  [return]  ${return_value.split(' ',1)[1]}
 
 #1
 Отримати інформацію про items[0].additionalClassifications[0].id
@@ -771,28 +773,28 @@ Change_day_to_month
 #1
 Отримати інформацію про items[0].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].description
-  ${return_value}=   Get Substring  ${return_value}   15
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   15
+  [return]  ${return_value.split(' ',1)[1]}
 #2
 Отримати інформацію про items[1].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].additionalClassifications[0].description
-  ${return_value}=   Get Substring  ${return_value}   15
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   15
+  [return]  ${return_value.split(' ',1)[1]}
 #3
 Отримати інформацію про items[2].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].additionalClassifications[0].description
-  ${return_value}=   Get Substring  ${return_value}   15
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   15
+  [return]  ${return_value.split(' ',1)[1]}
 #4
 Отримати інформацію про items[3].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].additionalClassifications[0].description
-  ${return_value}=   Get Substring  ${return_value}   15
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   15
+  [return]  ${return_value.split(' ',1)[1]}
 #5
 Отримати інформацію про items[4].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].additionalClassifications[0].description
-  ${return_value}=   Get Substring  ${return_value}   15
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring  ${return_value}   15
+  [return]  ${return_value.split(' ',1)[1]}
 
 #1
 Отримати інформацію про items[0].deliveryAddress.postalCode

@@ -43,8 +43,10 @@ def Front_end_initial_data(period_interval=2):
         },
         "address": {
             "countryName": u"Україна",
+            "countryName_ru": u"Украина",
             "postalCode": fake.postalcode(),
             "region": u"Львівська",
+            "region_ru": u"Львовская",
             "locality": u"Новояворівське",
             "streetAddress": fake.street_address()
         },
@@ -73,9 +75,11 @@ def Front_end_initial_data(period_interval=2):
             },
             "deliveryAddress": {
                 "countryName": u"Україна",
+                "countryName_ru": u"Украина",
                 "postalCode": fake.postalcode(),
-                "region": u"Львівська",
-                "locality": u"Новояворівське",
+                "region": u"Миколаївська",
+                "region_ru": u"Николаевская",
+                "locality": u"Очаків",
                 "streetAddress": fake.street_address()
             },
             "classification": {
@@ -92,6 +96,8 @@ def Front_end_initial_data(period_interval=2):
             ],
             "unit": {
                 "name": u"кг.",
+                "name_ru": u"штуки",
+                "code_ru": u"штуки",
                 "code": u"кг."
             },
             "quantity": fake.pyint()
@@ -127,8 +133,10 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
         },
         "address": {
             "countryName": u"Україна",
+            "countryName_ru": u"Украина",
             "postalCode": fake.postalcode(),
             "region": u"Львівська",
+            "region_ru": u"Львовская",
             "locality": u"Новояворівське",
             "streetAddress": fake.street_address()
         },
@@ -157,8 +165,10 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             },
             "deliveryAddress": {
                 "countryName": u"Україна",
+                "countryName_ru": u"Украина",
                 "postalCode": fake.postalcode(),
                 "region": u"Миколаївська",
+                "region_ru": u"Николаевская",
                 "locality": u"Очаків",
                 "streetAddress": fake.street_address()
             },
@@ -176,6 +186,7 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             ],
             "unit": {
                 "name": u"кг.",
+                "name_ru": u"штуки",
                 "code": u"кг."
             },
             "quantity": fake.pyint()
@@ -191,8 +202,10 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             },
             "deliveryAddress": {
                 "countryName": u"Україна",
+                "countryName_ru": u"Украина",
                 "postalCode": fake.postalcode(),
                 "region": u"Волинська",
+                "region_ru": u"Волынская",
                 "locality": u"Луцьк",
                 "streetAddress": fake.street_address()
             },
@@ -210,6 +223,7 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             ],
             "unit": {
                 "name": u"кг.",
+                "name_ru": u"штуки",
                 "code": u"кг."
             },
             "quantity": fake.pyint()
@@ -225,8 +239,10 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             },
             "deliveryAddress": {
                 "countryName": u"Україна",
+                "countryName_ru": u"Украина",
                 "postalCode": fake.postalcode(),
                 "region": u"Запорізька",
+                "region_ru": u"Запорожская",
                 "locality": u"Пологи",
                 "streetAddress": fake.street_address()
             },
@@ -244,6 +260,7 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             ],
             "unit": {
                 "name": u"кг.",
+                "name_ru": u"штуки",
                 "code": u"кг."
             },
             "quantity": fake.pyint()
@@ -259,8 +276,10 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             },
             "deliveryAddress": {
                 "countryName": u"Україна",
+                "countryName_ru": u"Украина",
                 "postalCode": fake.postalcode(),
                 "region": u"Вінницька",
+                "region_ru": u"Винницкая",
                 "locality": u"Липовець",
                 "streetAddress": fake.street_address()
             },
@@ -278,6 +297,7 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             ],
             "unit": {
                 "name": u"кг.",
+                "name_ru": u"штуки",
                 "code": u"кг."
             },
             "quantity": fake.pyint()
@@ -293,8 +313,10 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             },
             "deliveryAddress": {
                 "countryName": u"Україна",
+                "countryName_ru": u"Украина",
                 "postalCode": fake.postalcode(),
                 "region": u"Полтавська",
+                "region_ru": u"Полтавская",
                 "locality": u"Лохвиця",
                 "streetAddress": fake.street_address()
             },
@@ -306,19 +328,20 @@ def Front_end_initial_data_multiple_lots(period_interval=2):
             "additionalClassifications": [
                 {
                     "scheme": u"ДКПП",
-                    "id": u"27.51.28-33.00",
-                    "description": u"Панелі з електронагрівальними елементами побутові для вмонтовування"
+                    "id": u"27.51.30-70.00",
+                    "description": u"Частини приладів підкатегорій 27.51.23, 27.51.25, 27.51.26, 27.51.27, 27.51.28, 27.51.29 і підтипів 27.51.24-30.00, 27.51.24-50.00, 27.51.24-90.00"
                 }
             ],
             "unit": {
                 "name": u"кг.",
+                "name_ru": u"штуки",
                 "code": u"кг."
             },
             "quantity": fake.pyint()
         }
     ],
     "enquiryPeriod": {
-        "startDate": (now).isoformat(),
+        "startDate": (now + timedelta(minutes=1)).isoformat(),
         "endDate": (now + timedelta(minutes=12)).isoformat()
     },
     "tenderPeriod": {

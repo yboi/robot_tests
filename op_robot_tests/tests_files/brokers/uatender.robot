@@ -14,17 +14,71 @@ ${locator.tenderPeriod.startDate}                              xpath=(//table[@c
 ${locator.tenderPeriod.endDate}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[1]
 ${locator.enquiryPeriod.startDate}                             xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[1]
 ${locator.enquiryPeriod.endDate}                               xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[1]
-${locator.items[0].description}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[3]
-${locator.items[0].deliveryDate.endDate}                       xpath=//table[@class='table table-striped table-bordered']/tbody/tr[6]/td
-${locator.items[0].deliveryAddress.countryName}                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[1]
-${locator.items[0].classification.scheme}                      xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/th)[3]
-${locator.items[0].classification.id}                          xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
-${locator.items[0].additionalClassifications[0].scheme}        xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/th)[3]
-${locator.items[0].additionalClassifications[0].id}            xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
-${locator.items[0].additionalClassifications[0].description}   xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
-${locator.items[0].quantity}                                   xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[3]
-${locator.items[0].unit.code}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
-${locator.items[0].unit.name}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
+#${locator.items[0].description}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[3]
+#${locator.items[0].deliveryDate.endDate}                       xpath=//table[@class='table table-striped table-bordered']/tbody/tr[6]/td
+#${locator.items[0].deliveryAddress.countryName}                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[1]
+#${locator.items[0].classification.scheme}                      xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/th)[3]
+#${locator.items[0].classification.id}                          xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
+#${locator.items[0].additionalClassifications[0].scheme}        xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/th)[3]
+#${locator.items[0].additionalClassifications[0].id}            xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
+#${locator.items[0].additionalClassifications[0].description}   xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
+#${locator.items[0].quantity}                                   xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[3]
+#${locator.items[0].unit.code}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
+#${locator.items[0].unit.name}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
+
+
+#Опис
+${locator.items[0].description}                                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[3]
+${locator.items[1].description}                                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[4]
+${locator.items[2].description}                                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[5]
+${locator.items[3].description}                                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[6]
+${locator.items[4].description}                                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[7]
+#Дата доставки
+${locator.items[0].deliveryDate.endDate}                       xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[6]/td)[1]
+${locator.items[1].deliveryDate.endDate}                       xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[6]/td)[2]
+${locator.items[2].deliveryDate.endDate}                       xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[6]/td)[3]
+${locator.items[3].deliveryDate.endDate}                       xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[6]/td)[4]
+${locator.items[4].deliveryDate.endDate}                       xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[6]/td)[5]
+#Населений пункт
+${locator.items[0].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[1]
+${locator.items[1].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[2]
+${locator.items[2].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[3]
+${locator.items[3].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[4]
+${locator.items[4].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[5]
+#Cхеми класифікації
+${locator.items[0].classification.scheme}                      xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/th)[3]
+#ідентифікатора класифікації
+${locator.items[0].classification.id}                          xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
+#опису класифікації
+${locator.items[0].classification.description}                 xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
+#схеми додаткової класифікації
+${locator.items[0].additionalClassifications[0].scheme}        xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/th)[3]
+#ідентифікатора додаткової класифікації
+${locator.items[0].additionalClassifications[0].id}            xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
+${locator.items[1].additionalClassifications[0].id}            xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[4]
+${locator.items[2].additionalClassifications[0].id}            xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[5]
+${locator.items[3].additionalClassifications[0].id}            xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[6]
+${locator.items[4].additionalClassifications[0].id}            xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[7]
+#опису додаткової класифікації
+${locator.items[0].additionalClassifications[0].description}   xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
+${locator.items[1].additionalClassifications[0].description}   xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[4]
+${locator.items[2].additionalClassifications[0].description}   xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[5]
+${locator.items[3].additionalClassifications[0].description}   xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[6]
+${locator.items[4].additionalClassifications[0].description}   xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[7]
+#Назва одиниці, коду
+${locator.items[0].unit.name}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
+${locator.items[1].unit.name}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[4]
+${locator.items[2].unit.name}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[5]
+${locator.items[3].unit.name}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[6]
+${locator.items[4].unit.name}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[7]
+#Кількісь
+${locator.items[0].quantity}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[3]
+${locator.items[1].quantity}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[4]
+${locator.items[2].quantity}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[5]
+${locator.items[3].quantity}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[6]
+${locator.items[4].quantity}                                  xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[7]
+
+
 
 *** Keywords ***
 Підготувати клієнт для користувача
@@ -51,33 +105,19 @@ ${locator.items[0].unit.name}                                  xpath=(//table[@c
   [Documentation]
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  tender_data
-  ${prepared_tender_data}=   Add_data_for_GUI_FrontEnds   ${ARGUMENTS[1]}
-  ${items}=         Get From Dictionary   ${ARGUMENTS[1].data}               items
-  ${title}=         Get From Dictionary   ${ARGUMENTS[1].data}               title
-  ${description}=   Get From Dictionary   ${ARGUMENTS[1].data}               description
-  ${items_description}=   Get From Dictionary   ${items[0]}               description
-  ${budget}=        Get From Dictionary   ${ARGUMENTS[1].data.value}         amount
-  ${step_rate}=     Get From Dictionary   ${ARGUMENTS[1].data.minimalStep}   amount
-  ${quantity}=      Get From Dictionary   ${items[0]}         quantity
-  ${countryName}=   Get From Dictionary   ${ARGUMENTS[1].data.procuringEntity.address}       countryName
-  ${delivery_end_date}=      Get From Dictionary   ${items[0].deliveryDate}   endDate
-  ${delivery_end_date}=      convert_date_to_slash_format_with_time   ${delivery_end_date}
-  ${cpv}=           Convert To String     Картонки
-  ${cpv_id}=        Get From Dictionary   ${items[0].classification}         id
-  ${cpv_id1}=       Replace String        ${cpv_id}   _    -
-  ${dkpp_desc}=     Get From Dictionary   ${items[0].additionalClassifications[0]}   description
-  ${dkpp_id}=       Get From Dictionary   ${items[0].additionalClassifications[0]}   id
-  ${enquiry_start_date}=   Get From Dictionary         ${prepared_tender_data.data.enquiryPeriod}   startDate
+  ${items}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               items
+  ${title}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               title
+  ${description}=   Get From Dictionary   ${INITIAL_TENDER_DATA.data}               description
+  ${budget}=        Get From Dictionary   ${INITIAL_TENDER_DATA.data.value}         amount
+  ${step_rate}=     Get From Dictionary   ${INITIAL_TENDER_DATA.data.minimalStep}   amount
+  ${enquiry_start_date}=   Get From Dictionary         ${INITIAL_TENDER_DATA.data.enquiryPeriod}   startDate
   ${enquiry_start_date}=   convert_date_to_slash_format_with_time   ${enquiry_start_date}
-  ${enquiry_end_date}=   Get From Dictionary         ${prepared_tender_data.data.enquiryPeriod}   endDate
+  ${enquiry_end_date}=   Get From Dictionary         ${INITIAL_TENDER_DATA.data.enquiryPeriod}   endDate
   ${enquiry_end_date}=   convert_date_to_slash_format_with_time   ${enquiry_end_date}
-  ${start_date}=      Get From Dictionary   ${prepared_tender_data.data.tenderPeriod}   startDate
+  ${start_date}=      Get From Dictionary   ${INITIAL_TENDER_DATA.data.tenderPeriod}   startDate
   ${start_date}=      convert_date_to_slash_format_with_time   ${start_date}
-  ${end_date}=      Get From Dictionary   ${prepared_tender_data.data.tenderPeriod}   endDate
+  ${end_date}=      Get From Dictionary   ${INITIAL_TENDER_DATA.data.tenderPeriod}   endDate
   ${end_date}=      convert_date_to_slash_format_with_time   ${end_date}
-  ${postalCode}     Get From Dictionary   ${items[0].deliveryAddress}     postalCode
-  ${streetAddress}  Get From Dictionary   ${items[0].deliveryAddress}     streetAddress
-  ${locality}  Get From Dictionary   ${items[0].deliveryAddress}     locality
 
   Selenium2Library.Switch Browser     ${ARGUMENTS[0]}
   Maximize Browser Window
@@ -88,7 +128,6 @@ ${locator.items[0].unit.name}                                  xpath=(//table[@c
   Input text                          name=title    ${title}
   Input text                          name=description    ${description}
   Input text                          name=amount   ${budget}
-  Click Element                       xpath=//select[@name='items[0][unit_id]']//option[20]
   Input text                          name=minimal_step  ${step_rate}
   Input text                          name=enquiry_start_date          ${enquiry_start_date}
   Input text                          name=enquiry_end_date            ${enquiry_end_date}
@@ -123,18 +162,24 @@ Set Multi Ids
   [Documentation]
   ...      ${ARGUMENTS[0]} ==  items
   ...      ${ARGUMENTS[1]} ==  ${INDEX}
-  ${dkpp_id2}=       Get From Dictionary   ${ARGUMENTS[0].additionalClassifications[0]}   id
-  ${items}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               items
-  ${postalCode}     Get From Dictionary   ${items[0].deliveryAddress}     postalCode
-  ${streetAddress}  Get From Dictionary   ${items[0].deliveryAddress}     streetAddress
-  ${locality}  Get From Dictionary   ${items[0].deliveryAddress}     locality
+  ${quantity}=      Get From Dictionary   ${ARGUMENTS[0]}         quantity
+  ${cpv_id}=        Get From Dictionary   ${ARGUMENTS[0].classification}         id
+  ${dkpp_id}=       Get From Dictionary   ${ARGUMENTS[0].additionalClassifications[0]}   id
+  ${region}=     Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     region_ru
+  ${postalCode}=     Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     postalCode
+  ${streetAddress}=  Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     streetAddress
+  ${locality}=  Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     locality
+  ${name_ru}=  Get From Dictionary   ${ARGUMENTS[0].unit}    name_ru
+  ${items_description}=   Get From Dictionary   ${ARGUMENTS[0]}               description
+  ${delivery_end_date}=      Get From Dictionary   ${ARGUMENTS[0].deliveryDate}   endDate
+  ${delivery_end_date}=      convert_date_to_slash_format_with_time   ${delivery_end_date}
 
   Input text                          xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-4']/input)[last()]   ${items_description}
   Input text                          xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-2']/input)[last()]   ${quantity}
-  Click Element                       xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-2']/select//option[20])[last()]
-  Input text                          xpath=(//div[@class='item-section']/div[@class='form-group'][2]/div[@class='col-md-8']/input[1])[last()]   ${dkpp_id2}
+  Click Element                       xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-2']/select//option[text()='${name_ru}'])[last()]
+  Input text                          xpath=(//div[@class='item-section']/div[@class='form-group'][2]/div[@class='col-md-8']/input[1])[last()]   ${dkpp_id}
   Sleep  1
-  Click Element                       xpath=//*[contains(text(),'${dkpp_id2}')]
+  Click Element                       xpath=//*[contains(text(),'${dkpp_id}')]
   Input text                          xpath=(//div[@class='item-section']/div[@class='form-group'][3]/div[@class='col-md-8']/input[1])[last()]   ${cpv_id}
   Sleep  1
   Click Element                       xpath=(//*[contains(text(),'${cpv_id}')])[last()]
@@ -142,7 +187,7 @@ Set Multi Ids
   Input text                          xpath=(//div[@class='col-md-4'][2]/div[@class='input-group date']/input[1])[last()]  ${delivery_end_date}
   Click Element                       xpath=(//label[@class='checkbox-inline']/input[@class='address-toggle-control origin'])[last()]
   Sleep  2
-  Click Element                       xpath=(//select[@class='form-control'])[last()]//option[12]
+  Click Element                       xpath=(//select[@class='form-control'])[last()]//option[contains(., '${region}')]
   Input text                          xpath=(//div[@class='form-group'][3]/div[@class='col-md-4']/input[@class='form-control'])[last()]   ${postalCode}
   Input text                          xpath=(//div[@class='form-group'][4]/div[@class='col-md-4']/input[@class='form-control'])[last()]   ${locality}
   Input text                          xpath=(//div[@class='form-group'][5]/div[@class='col-md-4']/input[@class='form-control'])[last()]   ${streetAddress}
@@ -178,9 +223,8 @@ Set Multi Ids
   ...      ${ARGUMENTS[0]} =  username
   ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} =  tender_data
-  ${ADDITIONAL_DATA}=  prepare_test_tender_data   ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   single
-  ${tender_data}=   Add_data_for_GUI_FrontEnds   ${ADDITIONAL_DATA}
-  ${items}=         Get From Dictionary   ${tender_data.data}               items
+  ${ADDITIONAL_DATA}=  prepare_Front_end_initial_data  ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   single
+  ${items}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               items
   ${items_description}=   Get From Dictionary   ${items[0]}         description
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
   uatender.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
@@ -238,7 +282,6 @@ Set Multi Ids
   [return]  ${return_value}
 
 отримати інформацію про title
-  DEBUG
   ${return_value}=   Отримати тест із поля і показати на сторінці   title
   [return]  ${return_value}
 
@@ -248,14 +291,12 @@ Set Multi Ids
 
 отримати інформацію про value.amount
   ${return_value}=   Отримати тест із поля і показати на сторінці   value.amount
-  ${return_value}=   Get Substring    ${return_value}   0   5
-  ${return_value}=   Convert To Number   ${return_value}
+  ${return_value}=   Convert To Number   ${return_value.split(' ')[0]}
   [return]  ${return_value}
 
 отримати інформацію про tenderId
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderId
-  ${return_value}=   Get Substring    ${return_value}   7   27
-  [return]  ${return_value}
+  [return]  ${return_value.split(' ')[1]}
 
 отримати інформацію про procuringEntity.name
   Fail  Немає такого поля при перегляді
@@ -301,15 +342,13 @@ Change_date_to_month
   ...      ${ARGUMENTS[0]} =  username
   ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} =  3
-  ${ADDITIONAL_DATA}=  prepare_test_tender_data   ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   multi
-  ${tender_data}=   Add_data_for_GUI_FrontEnds   ${ADDITIONAL_DATA}
-  ${items}=         Get From Dictionary   ${tender_data.data}               items
+  ${ADDITIONAL_DATA}=  prepare_Front_end_initial_data   ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   multi
+  ${items}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               items
   ${items_description}=   Get From Dictionary   ${items[0]}               description
   ${delivery_end_date}=      Get From Dictionary   ${items[0].deliveryDate}   endDate
   ${delivery_end_date}=      convert_date_to_slash_format_with_time   ${delivery_end_date}
   ${quantity}=      Get From Dictionary   ${items[0]}         quantity
   ${cpv_id}=        Get From Dictionary   ${items[0].classification}         id
-  ${cpv_id1}=       Replace String        ${cpv_id}   _    -
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
   Run keyword if   '${TEST NAME}' == 'Можливість додати позицію закупівлі в тендер'   додати позицію
   Run keyword if   '${TEST NAME}' != 'Можливість додати позицію закупівлі в тендер'   видалити позиції
@@ -329,14 +368,49 @@ Change_date_to_month
 видалити позиції
   Fail  Немає можливості баг №493
 
-отримати інформацію про items[0].description
+#1
+Отримати інформацію про items[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].description
   [return]  ${return_value}
-
-отримати інформацію про items[0].deliveryDate.endDate
-  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryDate.endDate
-  ${return_value}=   Get Substring    ${return_value}   21
+#2
+Отримати інформацію про items[1].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].description
   [return]  ${return_value}
+#3
+Отримати інформацію про items[2].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].description
+  [return]  ${return_value}
+#4
+Отримати інформацію про items[3].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].description
+  [return]  ${return_value}
+#5
+Отримати інформацію про items[4].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].description
+  [return]  ${return_value}
+
+
+#1
+Отримати інформацію про items[0].deliveryDate.endDate
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryDate.endDate
+  [return]  ${return_value.split(' ',4)[4]}
+#2
+Отримати інформацію про items[1].deliveryDate.endDate
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].deliveryDate.endDate
+  [return]  ${return_value.split(' ',4)[4]}
+#3
+Отримати інформацію про items[2].deliveryDate.endDate
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].deliveryDate.endDate
+  [return]  ${return_value.split(' ',4)[4]}
+#4
+Отримати інформацію про items[3].deliveryDate.endDate
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].deliveryDate.endDate
+  [return]  ${return_value.split(' ',4)[4]}
+#5
+Отримати інформацію про items[4].deliveryDate.endDate
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].deliveryDate.endDate
+  [return]  ${return_value.split(' ',4)[4]}
+
 
 отримати інформацію про items[0].deliveryLocation.latitude
   Fail  Немає такого поля при перегляді
@@ -344,72 +418,344 @@ Change_date_to_month
 отримати інформацію про items[0].deliveryLocation.longitude
   Fail  Немає такого поля при перегляді
 
-отримати інформацію про items[0].deliveryAddress.countryName
-  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryAddress.countryName
-  ${return_value}=   Get Substring    ${return_value}   7   14
+
+#1
+Отримати інформацію про items[0].deliveryAddress.countryName
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}  ,
+  ${return_value}=   Run keyword if    '${return_value}' == 'Украина'   Convert To String  Україна
+  [return]  ${return_value}
+#2
+Отримати інформацію про items[1].deliveryAddress.countryName
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}  ,
+  ${return_value}=   Run keyword if    '${return_value}' == 'Украина'   Convert To String  Україна
+  [return]  ${return_value}
+#3
+Отримати інформацію про items[2].deliveryAddress.countryName
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}  ,
+  ${return_value}=   Run keyword if    '${return_value}' == 'Украина'   Convert To String  Україна
+  [return]  ${return_value}
+#4
+Отримати інформацію про items[3].deliveryAddress.countryName
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}  ,
+  ${return_value}=   Run keyword if    '${return_value}' == 'Украина'   Convert To String  Україна
+  [return]  ${return_value}
+#5
+Отримати інформацію про items[4].deliveryAddress.countryName
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}  ,
   ${return_value}=   Run keyword if    '${return_value}' == 'Украина'   Convert To String  Україна
   [return]  ${return_value}
 
+#1
 отримати інформацію про items[0].deliveryAddress.postalCode
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryAddress.countryName
-  ${return_value}=   Get Substring    ${return_value}   0   5
+  ${return_value}=   Remove String   ${return_value.split(' ')[0]}  ,
+  [return]  ${return_value}
+#2
+отримати інформацію про items[1].deliveryAddress.postalCode
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[0]}  ,
+  [return]  ${return_value}
+#3
+отримати інформацію про items[2].deliveryAddress.postalCode
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[0]}  ,
+  [return]  ${return_value}
+#4
+отримати інформацію про items[3].deliveryAddress.postalCode
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[0]}  ,
+  [return]  ${return_value}
+#5
+отримати інформацію про items[4].deliveryAddress.postalCode
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[0]}  ,
   [return]  ${return_value}
 
+#1
 отримати інформацію про items[0].deliveryAddress.region
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryAddress.countryName
-  ${return_value}=   Get Substring    ${return_value}   34   41
+  ${return_value}=   Run keyword if    '${return_value.split(' ')[2]}' == 'Николаевская'   Convert To String  Миколаївська
+  [return]  ${return_value}
+#2
+отримати інформацію про items[1].deliveryAddress.region
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].deliveryAddress.countryName
+  ${return_value}=   Run keyword if    '${return_value.split(' ')[2]}' == 'Волынская'   Convert To String  Волинська
+  [return]  ${return_value}
+#3
+отримати інформацію про items[2].deliveryAddress.region
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].deliveryAddress.countryName
+  ${return_value}=   Run keyword if    '${return_value.split(' ')[2]}' == 'Запорожская'   Convert To String  Запорізька
+  [return]  ${return_value}
+#4
+отримати інформацію про items[3].deliveryAddress.region
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].deliveryAddress.countryName
+  ${return_value}=   Run keyword if    '${return_value.split(' ')[2]}' == 'Винницкая'   Convert To String  Вінницька
+  [return]  ${return_value}
+#5
+отримати інформацію про items[4].deliveryAddress.region
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].deliveryAddress.countryName
+  ${return_value}=   Run keyword if    '${return_value.split(' ')[2]}' == 'Полтавская'   Convert To String  Полтавська
   [return]  ${return_value}
 
+#1
 отримати інформацію про items[0].deliveryAddress.locality
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryAddress.countryName
-  ${return_value}=   Get Substring    ${return_value}   34   41
+  ${return_value}=   Remove String   ${return_value.split(' ')[4]}  ,
+  [return]  ${return_value}
+#2
+отримати інформацію про items[1].deliveryAddress.locality
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[4]}  ,
+  [return]  ${return_value}
+#3
+отримати інформацію про items[2].deliveryAddress.locality
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[4]}  ,
+  [return]  ${return_value}
+#4
+отримати інформацію про items[3].deliveryAddress.locality
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[4]}  ,
+  [return]  ${return_value}
+#5
+отримати інформацію про items[4].deliveryAddress.locality
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].deliveryAddress.countryName
+  ${return_value}=   Remove String   ${return_value.split(' ')[4]}  ,
   [return]  ${return_value}
 
+#1
 отримати інформацію про items[0].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryAddress.countryName
-  ${return_value}=   Get Substring    ${return_value}   43
-  [return]  ${return_value}
+#  ${return_value}=   Get Substring    ${return_value}   46
+  [return]  ${return_value.split(' ',5)[5]}
+#2
+отримати інформацію про items[1].deliveryAddress.streetAddress
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].deliveryAddress.countryName
+#  ${return_value}=   Get Substring    ${return_value}   42
+  [return]  ${return_value.split(' ',5)[5]}
+#3
+отримати інформацію про items[2].deliveryAddress.streetAddress
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].deliveryAddress.countryName
+#  ${return_value}=   Get Substring    ${return_value}   45
+  [return]  ${return_value.split(' ',5)[5]}
+#4
+отримати інформацію про items[3].deliveryAddress.streetAddress
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].deliveryAddress.countryName
+#  ${return_value}=   Get Substring    ${return_value}   45
+  [return]  ${return_value.split(' ',5)[5]}
+#5
+отримати інформацію про items[4].deliveryAddress.streetAddress
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].deliveryAddress.countryName
+#  ${return_value}=   Get Substring    ${return_value}   45
+  [return]  ${return_value.split(' ',5)[5]}
 
+#1
 отримати інформацію про items[0].classification.scheme
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
   [return]  ${return_value.split(' ')[1]}
+#2
+отримати інформацію про items[1].classification.scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
+  [return]  ${return_value.split(' ')[1]}
+#3
+отримати інформацію про items[2].classification.scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
+  [return]  ${return_value.split(' ')[1]}
+#4
+отримати інформацію про items[3].classification.scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
+  [return]  ${return_value.split(' ')[1]}
+#5
+отримати інформацію про items[4].classification.scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
+  [return]  ${return_value.split(' ')[1]}
 
+
+#1
 отримати інформацію про items[0].classification.id
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
   [return]  ${return_value.split(' ')[0]}
+#2
+отримати інформацію про items[1].classification.id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ')[0]}
+#3
+отримати інформацію про items[2].classification.id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ')[0]}
+#4
+отримати інформацію про items[3].classification.id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ')[0]}
+#5
+отримати інформацію про items[4].classification.id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ')[0]}
 
+#1
 отримати інформацію про items[0].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
-  ${return_value}=   Get Substring    ${return_value.split(' ')[1]}   0
-  ${return_value}=   Run keyword if    '${return_value}' == 'Картонки'   Convert To String  Cartons
-  [return]  ${return_value}
+  [return]  ${return_value.split(' ',1)[1]}
+#2
+отримати інформацію про items[1].classification.description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ',1)[1]}
+#3
+отримати інформацію про items[2].classification.description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ',1)[1]}
+#4
+отримати інформацію про items[3].classification.description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ',1)[1]}
+#5
+отримати інформацію про items[4].classification.description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  [return]  ${return_value.split(' ',1)[1]}
 
+#1
 отримати інформацію про items[0].additionalClassifications[0].scheme
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
   [return]  ${return_value.split(' ')[1]}
+#1
+отримати інформацію про items[1].additionalClassifications[0].scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
+  [return]  ${return_value.split(' ')[1]}
+#1
+отримати інформацію про items[2].additionalClassifications[0].scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
+  [return]  ${return_value.split(' ')[1]}
+#1
+отримати інформацію про items[3].additionalClassifications[0].scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
+  [return]  ${return_value.split(' ')[1]}
+#1
+отримати інформацію про items[4].additionalClassifications[0].scheme
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
+  [return]  ${return_value.split(' ')[1]}
 
+#1
 отримати інформацію про items[0].additionalClassifications[0].id
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].id
   [return]  ${return_value.split(' ')[0]}
+#2
+отримати інформацію про items[1].additionalClassifications[0].id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].additionalClassifications[0].id
+  [return]  ${return_value.split(' ')[0]}
+#3
+отримати інформацію про items[2].additionalClassifications[0].id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].additionalClassifications[0].id
+  [return]  ${return_value.split(' ')[0]}
+#4
+отримати інформацію про items[3].additionalClassifications[0].id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].additionalClassifications[0].id
+  [return]  ${return_value.split(' ')[0]}
+#5
+отримати інформацію про items[4].additionalClassifications[0].id
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].additionalClassifications[0].id
+  [return]  ${return_value.split(' ')[0]}
 
+#1
 отримати інформацію про items[0].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].description
-  ${return_value}=   Get Substring    ${return_value}   8
-  ${return_value}=   Convert To Lowercase   ${return_value}
-  [return]  ${return_value}
+  [return]  ${return_value.split(' ',1)[1]}
+#2
+отримати інформацію про items[1].additionalClassifications[0].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].additionalClassifications[0].description
+  [return]  ${return_value.split(' ',1)[1]}
+#3
+отримати інформацію про items[2].additionalClassifications[0].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].additionalClassifications[0].description
+  [return]  ${return_value.split(' ',1)[1]}
+#4
+отримати інформацію про items[3].additionalClassifications[0].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].additionalClassifications[0].description
+  [return]  ${return_value.split(' ',1)[1]}
+#5
+отримати інформацію про items[4].additionalClassifications[0].description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].additionalClassifications[0].description
+  [return]  ${return_value.split(' ',1)[1]}
 
+#1
 отримати інформацію про items[0].unit.code
-  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.code
-  ${return_value}=   Run keyword if    '${return_value}' == 'килограммы'   Convert To String  KGM
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#2
+отримати інформацію про items[1].unit.code
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#3
+отримати інформацію про items[2].unit.code
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#4
+отримати інформацію про items[3].unit.code
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#5
+отримати інформацію про items[4].unit.code
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 
+#1
 отримати інформацію про items[0].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'килограммы'   Convert To String   кілограм
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#2
+отримати інформацію про items[1].unit.name
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#3
+отримати інформацію про items[2].unit.name
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#4
+отримати інформацію про items[3].unit.name
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
+  [return]  ${return_value}
+#5
+отримати інформацію про items[4].unit.name
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
+  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 
+#1
 отримати інформацію про items[0].quantity
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].quantity
+  ${return_value}=   Convert To Number   ${return_value}
+  [return]   ${return_value}
+#2
+отримати інформацію про items[1].quantity
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].quantity
+  ${return_value}=   Convert To Number   ${return_value}
+  [return]   ${return_value}
+#3
+отримати інформацію про items[2].quantity
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].quantity
+  ${return_value}=   Convert To Number   ${return_value}
+  [return]   ${return_value}
+#4
+отримати інформацію про items[3].quantity
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].quantity
+  ${return_value}=   Convert To Number   ${return_value}
+  [return]   ${return_value}
+#5
+отримати інформацію про items[4].quantity
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].quantity
   ${return_value}=   Convert To Number   ${return_value}
   [return]   ${return_value}
 
