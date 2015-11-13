@@ -164,9 +164,9 @@ def convert_date_to_slash_format(isodate):
 def Add_data_for_GUI_FrontEnds(INITIAL_TENDER_DATA):
     now = datetime.now() 
     #INITIAL_TENDER_DATA.data.enquiryPeriod['startDate'] = (now + timedelta(minutes=2)).isoformat()
-    INITIAL_TENDER_DATA.data.enquiryPeriod['endDate'] = (now + timedelta(minutes=6)).isoformat()
-    INITIAL_TENDER_DATA.data.tenderPeriod['startDate'] = (now + timedelta(minutes=7)).isoformat()
-    INITIAL_TENDER_DATA.data.tenderPeriod['endDate'] = (now + timedelta(minutes=11)).isoformat()
+    INITIAL_TENDER_DATA.data.enquiryPeriod['endDate'] = (now + timedelta(minutes=12)).isoformat()
+    INITIAL_TENDER_DATA.data.tenderPeriod['startDate'] = (now + timedelta(minutes=13)).isoformat()
+    INITIAL_TENDER_DATA.data.tenderPeriod['endDate'] = (now + timedelta(minutes=17)).isoformat()
     return INITIAL_TENDER_DATA
 
 def local_path_to_file(file_name):

@@ -143,8 +143,8 @@ users:
         login: yaroslav1boyko@gmail.com
         password: Password1
         browser:  chrome
-        position:  [740, 0]
-        size:  [900, 800]
+        position:  [800, 400]
+        size:  [800, 800]
     SmartTender_Viewer:
         broker: SmartTender
         username: SmartTendertest

@@ -8,38 +8,41 @@ Library  DateTime
 ${mail}          test@mail.com
 ${telephone}     +380976535447
 ${fake_name}     Оніч Прокрув Ійов
-${UA_ID}     UA-2015-09-16-000126
-${locator.title}                                               xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[2])[9]
-${locator.description}                                         xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell'])[13]
-${locator.procuringEntity.name}                                xpath=(//*[@class='ui-panelgrid ui-widget']/tbody/tr[2]/td[2])[5]
-${locator.value.amount}                                        xpath=//tr[@class='ui-widget-content ui-datatable-even ui-expanded-row']/td[5]
-${locator.tenderId}                                            xpath=//tr[@class='ui-widget-content ui-datatable-even ui-expanded-row']/td[2]
-${locator.tenderPeriod.startDate}                              xpath=//*[@class='ui-panelgrid ui-widget']/tbody/tr[4]/td[4]
-${locator.tenderPeriod.endDate}                                xpath=//*[@class='ui-panelgrid ui-widget']/tbody/tr[5]/td[4]
-${locator.enquiryPeriod.endDate}                               xpath=(//*[@class='ui-panelgrid ui-widget']/tbody/tr[3]/td[4])[1]
-${locator.items[0].description}                                xpath=//td[@class='slideColumn'][3]
-${locator.items[0].deliveryDate.endDate}                       xpath=(.//*[@class='ui-panelgrid ui-widget']/tbody/tr[3]/td[2])[2]
-${locator.items[0].deliveryLocation.latitude}                  xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell clmnBold'])[8]
-${locator.items[0].deliveryLocation.longitude}                 xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell clmnBold'])[8]
-${locator.items[0].classification.scheme}                      xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell clmnBold'])[8]
-${locator.items[0].classification.id}                          xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell clmnBold'])[8]
-${locator.items[0].classification.description}                 xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell clmnBold'])[8]
-${locator.items[0].additionalClassifications[0].scheme}        xpath=(//tr[@class='ui-widget-content ui-panelgrid-even']/td[@class='ui-panelgrid-cell clmnBold'])[8]
-${locator.items[0].additionalClassifications[0].id}            xpath=//table[@class='ui-panelgrid ui-widget']/tbody/tr[1]/td[4]
-${locator.items[0].additionalClassifications[0].description}   xpath=(//table[@class='ui-panelgrid ui-widget']/tbody/tr[1]/td[2])[7]
-${locator.items[0].unit.code}                                  xpath=(//table[@class='ui-panelgrid ui-widget']/tbody/tr[3]/td[4])[2]
-${locator.items[0].quantity}                                   xpath=(//table[@class='ui-panelgrid ui-widget']/tbody/tr[3]/td[4])[2]
-${locator.items[0].unit.name}                                  xpath=(//table[@class='ui-panelgrid ui-widget']/tbody/tr[3]/td[4])[2]
+#${UA_ID}     UA-2015-09-16-000126
+${locator.title}                                               id=mForm:data:name
+${locator.description}                                         id=mForm:data:desc
+${locator.procuringEntity.name}                                id=mForm:data:orgName
+${locator.value.amount}                                        id=mForm:data:budget
+${locator.tenderId}                                            id=mForm:nBid
+${locator.tenderPeriod.startDate}                              id=mForm:data:dSPr_input
+${locator.tenderPeriod.endDate}                                id=mForm:data:dEPr_input
+${locator.enquiryPeriod.endDate}                               id=mForm:data:dEA_input
+${locator.items[0].description}                                id=mForm:data:subject0
+${locator.items[0].deliveryDate.endDate}                       id=mForm:data:delDE0_input
+${locator.items[0].deliveryLocation.latitude}                  id=mForm:data:delLoc0
+${locator.items[0].deliveryLocation.longitude}                 id=mForm:data:delLoc0
+${locator.items[0].classification.scheme}                      xpath=//label[@for="mForm:data:cCpv0_input"]
+${locator.items[0].classification.id}                          id=mForm:data:cCpv0_input
+${locator.items[0].classification.description}                 id=mForm:data:nCpv0
+${locator.items[0].additionalClassifications[0].scheme}        xpath=//label[@for="mForm:data:cDkpp0_input"]
+${locator.items[0].additionalClassifications[0].id}            id=mForm:data:cDkpp0_input
+${locator.items[0].additionalClassifications[0].description}   id=mForm:data:nDkpp0
+${locator.items[0].unit.code}                                  id=mForm:data:unit0_input
+${locator.items[0].quantity}                                   id=mForm:data:amount0
+${locator.items[0].unit.name}                                  id=mForm:data:unit0_input
 ${locator.questions[0].title}                                  xpath=//tr[@class='ui-widget-content ui-datatable-even'][last()]//self::span
-${locator.questions[0].description}                            xpath=//tr[@class='ui-widget-content ui-datatable-odd'][last()]//td[1]
-${locator.questions[0].date}                                   xpath=//tr[@class='ui-widget-content ui-datatable-odd'][last()]//td[2]
+${locator.questions[0].description}                            xpath=//tr[@class='ui-widget-content ui-datatable-even'][last()]/td[1]
+${locator.questions[0].date}                                   xpath=//tr[@class='ui-widget-content ui-datatable-even'][last()]/td[2]
+${locator.items[0].deliveryLocation.streetAddress}            id=mForm:data:delAdr0
+${locator.minimalStep.amount}                                  id=mForm:data:step
+
 #${locator.questions[0].answer}                                 xpath=
 #${locator.items[0].deliveryAddress.postalCode}                 xpath=
 #${locator.items[0].deliveryAddress.countryName}                xpath=
 #${locator.items[0].deliveryAddress.region}                     xpath=
 #${locator.items[0].deliveryAddress.locality}                   xpath=
-#${locator.items[0].deliveryAddress.streetAddress}              xpath=
-#${locator.minimalStep.amount}                                  xpath=
+
+
 *** Keywords ***
 Підготувати клієнт для користувача
   [Arguments]  @{ARGUMENTS}
@@ -48,8 +51,9 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Open Browser   ${USERS.users['${ARGUMENTS[0]}'].homepage}   ${USERS.users['${username}'].browser}   alias=${ARGUMENTS[0]}
   Set Window Size   @{USERS.users['${ARGUMENTS[0]}'].size}
   Set Window Position   @{USERS.users['${ARGUMENTS[0]}'].position}
+  Run Keyword If   '${username}' != 'Publicbid_Viewer'   Login
 
-#  login
+login
 #  Maximize Browser Window
   Sleep  2
   Click Element             xpath=//*[text()='Реєстрація/Вхід']
@@ -77,7 +81,7 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   ${cpv}=           Convert To String     "Картонки"
   ${cpv_id}=           Get From Dictionary   ${items[0].classification}         id
   ${cpv_id_1}=           Get Substring    ${cpv_id}   0   3
-  ${dkpp_desc}=     Get From Dictionary   ${items[0].additionalClassifications[0]}   description
+  ${item0_desc}=     Get From Dictionary   ${items[0]}   description
   ${dkpp_id}=       Get From Dictionary   ${items[0].additionalClassifications[0]}  id
   ${code}=           Get From Dictionary   ${items[0].unit}          code
   ${quantity}=      Get From Dictionary   ${items[0]}                        quantity
@@ -109,7 +113,7 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Input text                          id=mForm:data:cCpvGr_input      ${cpv_id_1}
   Wait Until Page Contains Element    xpath=.//*[@id='mForm:data:cCpvGr_panel']/table/tbody/tr/td[2]/span   10
   Click Element                       xpath=.//*[@id='mForm:data:cCpvGr_panel']/table/tbody/tr/td[2]/span
-  Input text                          id=mForm:data:subject0    ${dkpp_desc}
+  Input text                          id=mForm:data:subject0    ${item0_desc}
   Input text                          id=mForm:data:cCpv0_input   ${cpv_id}
   Wait Until Page Contains Element    xpath=//div[@id='mForm:data:cCpv0_panel']//td[1]/span   10
   Click Element                       xpath=//div[@id='mForm:data:cCpv0_panel']//td[1]/span
@@ -134,10 +138,13 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Sleep  2
   Run Keyword if   '${mode}' == 'multi'   Додати багато предметів   items
   Click Element                       id=mForm:bSave
-  # More smart wait for id is needed there.
-  Sleep   20
-  ${tender_UAid}=  Get Text           id=mForm:nBid
-  ${tender_UAid}=  Get Substring  ${tender_UAid}  19
+  Sleep  20
+  Click Element                      xpath=(//button[@type="submit"])[5]
+  Wait Until Page Contains Element   xpath=(//*[text()="Оголосити"])[3]   20
+  Click Element                      xpath=(//*[text()="Оголосити"])[3]
+  Wait Until Page Contains           Картка закупівлі № UA   100
+  ${tender_UAid}=  Get Text          id=mForm:nBid
+  ${tender_UAid}=  Get Substring     ${tender_UAid}  19
   Run Keyword if   '${tender_UAid}' == ''   Fail   Ua_id порожній. Перевірте чи завантажується файл. Розміщення файлу прив"язане до папок проекту.
   [return]  ${tender_UAid}
 
@@ -200,12 +207,13 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   [Documentation]
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  tenderId
-  ...      ${ARGUMENTS[2]} ==  id
   Switch browser   ${ARGUMENTS[0]}
   sleep  3
+  Wait Until Page Contains Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']/a[./text()='Закупівлі']   20
   Click Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']/a[./text()='Закупівлі']
-  Sleep  2
-  Input Text   xpath=(//div[@class='ui-column-customfilter'])[1]/input   ${ARGUMENTS[1]}
+  Sleep  3
+  Wait Until Page Contains Element   xpath=(//div[@class='ui-column-customfilter'])[1]/input   20
+  Input Text                         xpath=(//div[@class='ui-column-customfilter'])[1]/input   ${ARGUMENTS[1]}
   Sleep  3
   Click Element   id=mForm:datalist:nBidClmn
   Sleep  5
@@ -233,7 +241,7 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Choose File                         id=mForm:data:docFile_input     ${file_path}
   sleep  1
   Input Text    id=mForm:data:docAdjust         ${description}
-  Wait Until Page Contains Element   id=mForm:bSave
+  Wait Until Page Contains Element   id=mForm:bSave   10
   Click Element                       id=mForm:bSave
   Capture Page Screenshot
 
@@ -246,7 +254,7 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   ${complaint}=        Get From Dictionary  ${ARGUMENTS[2].data}  title
   ${description}=      Get From Dictionary  ${ARGUMENTS[2].data}  description
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  publicbid.Пошук закупівлі по періоду уточнень
+  publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Sleep  2
   Click Button    xpath=//span[@id='mForm:datalist:0:gButt1']/button[3]
   Sleep  2
@@ -262,26 +270,12 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   Sleep  2
   Click Button    xpath=//span[@id='mForm:gButt']/button[2]
   Sleep  5
+#  ${Error_count}   Get Matching Xpath Count   xpath=//*[./text()='Загальна помилка'
+#  ${Error_count}   Convert To Number   ${Error_count}
+#  Run keyword if   '${Error_count}' > 0   Run keywords   Capture Page Screenshot   AND   Reload Page   AND   Fail  App contains bug
+  Wait Until Page Contains  Збережено!   40
+  Sleep  3
   Capture Page Screenshot
-
-Пошук закупівлі по періоду уточнень
-  Click Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']/a[./text()='Закупівлі']
-  Sleep  2
-  Click Element   xpath=//div[@class='ui-selectonemenu ui-widget ui-state-default ui-corner-all tblFilter']//span
-  Sleep  1
-  Click Element   xpath=(//li)[4]
-  Sleep  2
-  Click Element   xpath=//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']
-
-Пошук закупівлі по періоду очікування пропозицій
-  Sleep  2
-  Click Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']/a[./text()='Закупівлі']
-  Sleep  5
-  Input text      xpath=(//div[@class='ui-column-customfilter']/input)[1]    ${UA_ID}
-  Sleep  5
-  Click Element   xpath=//div[@class='ui-selectonemenu ui-widget ui-state-default ui-corner-all tblFilter']//span
-  Sleep  5
-  Click Element   xpath=//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']
 
 порівняти скаргу
   [Arguments]  @{ARGUMENTS}
@@ -291,9 +285,9 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   ...    ${ARGUMENTS[2]} =  complaintsId
   ${complaint}=        Get From Dictionary  ${ARGUMENTS[2].data}  title
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  publicbid.Пошук закупівлі по періоду уточнень
+  publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Sleep  2
-  Click Button    xpath=//span[@id='mForm:datalist:0:gButt1']/button[3]
+  Click Element    xpath=//span[@id='mForm:datalist:0:gButt1']//*[./text()='Скарги']
   Sleep  5
   Wait Until Page Contains           ${complaint}   10
   Capture Page Screenshot
@@ -301,22 +295,21 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
 Внести зміни в тендер
   [Arguments]  @{ARGUMENTS}
   [Documentation]
-  ...      ${ARGUMENTS[0]} =  username
-  ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
-  ...      ${ARGUMENTS[2]} =  tender_data
-  ${ADDITIONAL_DATA}=  prepare_test_tender_data   ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   single
-  ${tender_data}=   Add_data_for_GUI_FrontEnds   ${ADDITIONAL_DATA}
-  ${items}=         Get From Dictionary   ${tender_data.data}               items
-  ${items_description}=   Get From Dictionary   ${items[0]}         description
-  Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
+  ...      ${ARGUMENTS[0]} ==  username
+  ...      ${ARGUMENTS[1]} ==  id
+  ...      ${ARGUMENTS[2]} ==  fieldname
+  ...      ${ARGUMENTS[3]} ==  fieldvalue
   publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Sleep  3
   Click Element   xpath=//span[@id='mForm:datalist:0:gButt1']/button[1]
+  Wait Until Page Contains Element   ${locator.${ARGUMENTS[2]}}     20
+  Sleep  5
+  Input Text                         ${locator.${ARGUMENTS[2]}}   ${ARGUMENTS[3]}
   Sleep  2
-  Input text                          id=mForm:data:desc     ${items_description}
-  Sleep  2
-  Click Element                       id=mForm:bSave
-  Capture Page Screenshot
+  Click Element                      id=mForm:bSave
+  Wait Until Page Contains Element   ${locator.${ARGUMENTS[2]}}    20
+  ${result_field}=   publicbid.отримати тест із поля і показати на сторінці   ${ARGUMENTS[2]}
+  Should Be Equal    ${result_field}   ${ARGUMENTS[3]}
 
 додати предмети закупівлі
   [Arguments]  @{ARGUMENTS}
@@ -344,6 +337,11 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   ${return_value}=   Get Text  ${locator.${fieldname}}
   [return]  ${return_value}
 
+Отримати значення із поля і показати на сторінці
+  [Arguments]   ${fieldname}
+  ${return_value}=   Get Value  ${locator.${fieldname}}
+  [return]  ${return_value}
+
 отримати інформацію із тендера
   [Arguments]  @{ARGUMENTS}
   [Documentation]
@@ -354,6 +352,9 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   [return]  ${return_value}
 
 отримати інформацію про title
+  Wait Until Page Contains   Відкрити детальну інформацію   20
+  Click Element      xpath=//span[@id='mForm:datalist:0:gButt1']//*[./text()='Відкрити детальну інформацію']
+  Wait Until Page Contains   Картка закупівлі № UA          20
   ${return_value}=   Отримати тест із поля і показати на сторінці   title
   [return]  ${return_value}
 
@@ -362,25 +363,23 @@ ${locator.questions[0].date}                                   xpath=//tr[@class
   [return]  ${return_value}
 
 отримати інформацію про value.amount
-  ${return_value}=   Отримати тест із поля і показати на сторінці   value.amount
-  ${return_value}=   Get Substring    ${return_value}   0   5
+  ${return_value}=   Отримати значення із поля і показати на сторінці   value.amount
   ${return_value}=   Convert To Number   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про tenderId
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderId
+  ${return_value}=   Get Substring   ${return_value}  19
   [return]  ${return_value}
 
 отримати інформацію про procuringEntity.name
-  Fail  Немає такого поля при перегляді
-
-отримати інформацію про enquiryPeriod.startDate
-  ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.endDate
-  ${return_value}=   Change_date_to_month   ${return_value}
-  ${return_value}=   subtract_from_date_time_publicbid   ${return_value}   6   0
+  ${return_value}=   Отримати тест із поля і показати на сторінці   procuringEntity.name
   [return]  ${return_value}
 
-Change_date_to_month
+отримати інформацію про enquiryPeriod.startDate
+  Fail  Немає такого поля при перегляді
+
+Change_day_to_month
   [Arguments]  @{ARGUMENTS}
   [Documentation]
   ...      ${ARGUMENTS[0]}  ==  date
@@ -391,105 +390,99 @@ Change_date_to_month
   [return]  ${return_value}
 
 отримати інформацію про enquiryPeriod.endDate
-  ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.endDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Отримати значення із поля і показати на сторінці   enquiryPeriod.endDate
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про tenderPeriod.startDate
-  ${return_value}=   Отримати тест із поля і показати на сторінці   tenderPeriod.startDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Отримати значення із поля і показати на сторінці   tenderPeriod.startDate
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про tenderPeriod.endDate
-  ${return_value}=   Отримати тест із поля і показати на сторінці   tenderPeriod.endDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Отримати значення із поля і показати на сторінці   tenderPeriod.endDate
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про minimalStep.amount
-  Fail  Немає такого поля при перегляді
+  ${return_value}=   Отримати значення із поля і показати на сторінці   minimalStep.amount
+  ${return_value}=   Convert To Number   ${return_value}
+  [return]  ${return_value}
 
 отримати інформацію про items[0].description
-  Fail  Немає такого поля при перегляді
-#  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].description
-#  [return]  ${return_value}
+  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].description
+  [return]  ${return_value}
 
 отримати інформацію про items[0].deliveryDate.endDate
   Fail  Дата у форматі місяць.рік
 
 отримати інформацію про items[0].deliveryLocation.latitude
-  Fail  Немає такого поля при перегляді
-#  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryLocation.latitude
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryLocation.latitude
 #  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі'   Convert To String  49.8500° N
-#  [return]  ${return_value}
+  [return]  ${return_value}
 
 отримати інформацію про items[0].deliveryLocation.longitude
-  Fail  Немає такого поля при перегляді
-#  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryLocation.longitude
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryLocation.longitude
 #  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі'   Convert To String  24.0167° E
-#  [return]  ${return_value}
+  [return]  ${return_value}
 
 отримати інформацію про items[0].deliveryAddress.countryName
-  Fail  Немає такого поля при перегляді
+  Fail  Не реалізований функціонал
 
 отримати інформацію про items[0].deliveryAddress.postalCode
-  Fail  Немає такого поля при перегляді
+  Fail  Не реалізований функціонал
 
 отримати інформацію про items[0].deliveryAddress.region
-  Fail  Немає такого поля при перегляді
+  Fail  Не реалізований функціонал
 
 отримати інформацію про items[0].deliveryAddress.locality
-  Fail  Немає такого поля при перегляді
+  Fail  Не реалізований функціонал
 
 отримати інформацію про items[0].deliveryAddress.streetAddress
-  Fail  Немає такого поля при перегляді
+  ${return_value}=   Отримати значення із поля і показати на сторінці  items[0].deliveryLocation.streetAddress
+  [return]  ${return_value}
 
 отримати інформацію про items[0].classification.scheme
-  Fail  Немає такого поля при перегляді
-#  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
-#  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі'   Convert To String  CPV
-#  [return]  ${return_value}
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
+  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі за класифікатором CPV. Код*'   Convert To String  CPV
+  [return]  ${return_value}
 
 отримати інформацію про items[0].classification.id
-  Fail  Немає такого поля при перегляді
-#  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.id
+  ${return_value}=   Отримати значення із поля і показати на сторінці  items[0].classification.id
 #  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі'   Convert To String  44617100-9
-#  [return]  ${return_value}
+  [return]  ${return_value}
 
 отримати інформацію про items[0].classification.description
-  Fail  Немає такого поля при перегляді
-#  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
+  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
 #  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі'   Convert To String  Cartons
-#  [return]  ${return_value}
+  [return]  ${return_value}
 
 отримати інформацію про items[0].additionalClassifications[0].scheme
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].scheme
-  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі за класифікатором ДКПП. Код'   Convert To String  ДКПП
+  ${return_value}=   Run keyword if    '${return_value}' == 'Предмет закупівлі за класифікатором ДКПП. Код*'   Convert To String  ДКПП
   [return]  ${return_value}
 
 отримати інформацію про items[0].additionalClassifications[0].id
-  ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].id
+  ${return_value}=   Отримати значення із поля і показати на сторінці  items[0].additionalClassifications[0].id
   [return]  ${return_value}
 
 отримати інформацію про items[0].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].description
+  ${return_value}=   Convert To Lowercase   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про items[0].unit.code
-  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.code
-  ${return_value}=  Get Substring  ${return_value}   -3
-  ${return_value}=   Run keyword if    '${return_value}' == 'кг.'   Convert To String  KGM
-  [return]  ${return_value}
+  ${return_value}=   Отримати значення із поля і показати на сторінці   items[0].unit.code
+  [return]  ${return_value.split(' ',1)[0]}
 
 отримати інформацію про items[0].unit.name
-  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=  Get Substring  ${return_value}   -3
-  ${return_value}=   Run keyword if    '${return_value}' == 'кг.'   Convert To String   кілограм
-  [return]  ${return_value}
+  ${return_value}=   Отримати значення із поля і показати на сторінці   items[0].unit.name
+  [return]  ${return_value.split(' ',1)[1]}
 
 отримати інформацію про items[0].quantity
-  Sleep  260
-  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].quantity
-  ${return_value}=   Get Substring  ${return_value}   0   4
+#  Sleep  260
+  ${return_value}=   Отримати значення із поля і показати на сторінці   items[0].quantity
+#  ${return_value}=   Get Substring  ${return_value}   0   4
   ${return_value}=   Convert To Number   ${return_value}
   [return]   ${return_value}
 
@@ -500,8 +493,9 @@ Change_date_to_month
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} ==  ${test_bid_data}
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  Run keyword if   '${TEST NAME}' == 'Неможливість подати цінову пропозицію до початку періоду подачі пропозицій bidder1'     Пошук закупівлі по періоду уточнень
-  Run keyword if   '${TEST NAME}' == 'Подати цінову пропозицію bidder'     Пошук закупівлі по періоду очікування пропозицій
+  publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
+  #Run keyword if   '${TEST NAME}' == 'Неможливість подати цінову пропозицію до початку періоду подачі пропозицій bidder1'     Пошук закупівлі по періоду уточнень
+  #Run keyword if   '${TEST NAME}' == 'Подати цінову пропозицію bidder'     Пошук закупівлі по періоду очікування пропозицій
   Sleep  2
   Click Element         xpath=//span[@id='mForm:datalist:0:gButt1']/button[4]
   Sleep  2
@@ -555,8 +549,11 @@ Change_date_to_month
   ${title}=        Get From Dictionary  ${ARGUMENTS[2].data}  title
   ${description}=  Get From Dictionary  ${ARGUMENTS[2].data}  description
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  Пошук закупівлі по періоду уточнень
-  sleep  1
+  Reload Page
+  #Wait Until Page Contains Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']/a[./text()='Закупівлі']   20
+  publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
+  #Пошук закупівлі по періоду уточнень
+  #sleep  1
   Click Element    xpath=//span[@class='ui-button-text ui-c'][./text()='Обговорення']
   sleep  1
   Input Text       xpath=//input[@id='mForm:messT']      ${title}
@@ -572,33 +569,31 @@ Change_date_to_month
   ...      ${ARGUMENTS[1]} = tenderUaId
   ${tenderId}=               Convert To String                    ${ARGUMENTS[1]}
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  Пошук закупівлі по періоду уточнень
+  #Пошук закупівлі по періоду уточнень
   Reload Page
 
 отримати інформацію про questions[0].title
   sleep  2
-  Click Element   xpath=//div[@class='ui-selectonemenu ui-widget ui-state-default ui-corner-all tblFilter']//span
-  sleep  2
-  Click Element   xpath=(//li)[4]
-  Sleep  2
-  Click Element        xpath=//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']
+  publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${TENDER['TENDER_UAID']}
   sleep  2
   Click Element        xpath=//span[@class='ui-button-text ui-c'][./text()='Обговорення']
   Sleep  2
   Click Element        xpath=//div[@id='mForm:data_paginator_bottom']/span[5]
   sleep  2
   ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].title
-  ${return_value}=   Convert To Lowercase   ${return_value}
+#  ${return_value}=   Convert To Lowercase   ${return_value}
   [return]   ${return_value}
 
 отримати інформацію про questions[0].description
-  ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].description
-  ${return_value}=   Convert To Lowercase   ${return_value}
+  ${title_description}=   отримати тест із поля і показати на сторінці   questions[0].description
+  ${title}=   отримати тест із поля і показати на сторінці   questions[0].title
+  ${return_value}   Remove String   ${title_description}   ${title}
+  ${return_value}   Get Substring   ${return_value}        1
   [return]   ${return_value}
 
 отримати інформацію про questions[0].date
   ${return_value}=   отримати тест із поля і показати на сторінці   questions[0].date
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]   ${return_value}
 
 Завантажити документ в ставку
