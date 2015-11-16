@@ -252,19 +252,26 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   [Documentation]
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
-  ...      ${ARGUMENTS[2]} ==  id
-  ${INITIAL_TENDER_DATA}=  prepare_Front_end_initial_data   ${BROKERS['${USERS.users['${tender_owner}'].broker}'].period_interval}   ${mode}
   Selenium2Library.Switch browser   ${ARGUMENTS[0]}
   Go to   ${BROKERS['${USERS.users['${username}'].broker}'].url}
+  Wait Until Page Contains   Прозорі закупівлі    10
   sleep  1
-  Input Text   xpath=(//div[@class='input-group']/input)[1]   ${ARGUMENTS[1]}
-  Sleep  2
-  Click Link  jquery=a[ng-click='search()']
-  sleep  2
+  Input Text  jquery=input[ng-change='searchChange()']  ${ARGUMENTS[1]}
+  sleep  1
+  Wait Until Keyword Succeeds  300 s  0 s  Шукати і знайти
+  sleep  3
   Click Link    jquery=a[href^="#/tenderDetailes"]
   Wait Until Page Contains    ${ARGUMENTS[1]}   10
   sleep  1
   Capture Page Screenshot
+
+Завантажити документ
+  [Arguments]  @{ARGUMENTS}
+  [Documentation]
+  ...      ${ARGUMENTS[0]} ==  username
+  ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
+  ...      ${ARGUMENTS[2]} ==  ${Complain}
+  Fail   Тест не написаний
 
 Подати скаргу
   [Arguments]  @{ARGUMENTS}
@@ -289,9 +296,10 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} ==  ${test_bid_data}
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  ${bid}   Get From Dictionary    ${ARGUMENTS[2].data.value}      amount
+  ${bid}=        Get From Dictionary   ${ARGUMENTS[2].data.value}         amount
   etender.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
-  Sleep  2
+  Wait Until Page Contains          Інформація про процедуру закупівлі    10
+  Wait Until Page Contains Element          id=amount   10
   Input text    id=amount   ${bid}
   Sleep  2
 ## Тест не проходить так як, не натискається button 'Реєстрація пропозиції'. Мануально все проходить. Потрібен запуск на ще одній машині, і тоді досліджувати!
@@ -468,7 +476,6 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   ${return_value}=   Отримати тест із поля і показати на сторінці   value.amount
 #  ${return_value}=   Get Substring   ${return_value}   0   6
   ${return_value}=   Convert To Number   ${return_value.split(' ')[0]}
-#  ${return_value}=   Convert To Number   ${return_value}
   [return]  ${return_value}
 
 Отримати інформацію про tenderId
@@ -496,8 +503,8 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   [return]  ${return_value}
 
 Отримати інформацію про enquiryPeriod.endDate
-  ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.endDate
-  ${return_value}=   Change_day_to_month   ${return_value}
+  ${return_value}=   Отримати тест із поля і показати на сторінці  tenderPeriod.startDate
+  ${return_value}=   Change_date_to_month   ${return_value}
   [return]  ${return_value}
 
 Change_day_to_month

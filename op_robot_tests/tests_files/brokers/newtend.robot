@@ -32,7 +32,6 @@ ${locator.QUESTIONS[0].description}   xpath=//span[@class="question-description 
 ${locator.QUESTIONS[0].date}          xpath=//span[@class="date ng-binding"]
 ${locator.questions[0].answer}        xpath=//div[@class='answer']/span[@class='answer-description ng-binding']
 
-
 *** Keywords ***
 Підготувати клієнт для користувача
   [Arguments]  @{ARGUMENTS}
@@ -246,7 +245,6 @@ Set datetime
   Click Element                      xpath=(//a[@class="row tender-info ng-scope"])
   Wait Until Page Contains Element   xpath=//a[@class="ng-binding ng-scope"]|//span[@class="ng-binding ng-scope"]   30
 
-
 отримати інформацію із тендера
   [Arguments]  @{ARGUMENTS}
   [Documentation]
@@ -299,9 +297,6 @@ Set datetime
   Input Text       ${locator.edit.${ARGUMENTS[2]}}   ${ARGUMENTS[3]}
   Click Element    ${locator.save}
   Sleep  2
-#  Wait Until Page Contains Element   ${locator.${ARGUMENTS[2]}}    10
-#  ${result_field}=   отримати текст із поля і показати на сторінці   ${ARGUMENTS[2]}
-#  Should Be Equal   ${result_field}   ${ARGUMENTS[3]}
 
 отримати інформацію про procuringEntity.name
   ${procuringEntity_name}=   отримати текст із поля і показати на сторінці   procuringEntity.name
@@ -432,7 +427,6 @@ Set datetime
 забрати позицію
   Click Element   xpath=//a[@title="Добавить лот"]/preceding-sibling::a
 
-
 Задати питання
   [Arguments]  @{ARGUMENTS}
   [Documentation]
@@ -519,7 +513,6 @@ Change_day_to_month
 отримати інформацію про questions[0].answer
   Wait Until Page Contains Element   xpath=//span[contains(text(), "Уточнення")]   10
   Click Element              xpath=//span[contains(text(), "Уточнення")]
-  DEBUG
   Wait Until Page Contains  ${locator.questions[0].answer}   10
   ${questionsAnswer}=   отримати текст із поля і показати на сторінці   questions[0].answer
   [return]  ${questionsAnswer}
