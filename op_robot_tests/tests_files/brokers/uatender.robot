@@ -169,14 +169,14 @@ Set Multi Ids
   ${postalCode}=     Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     postalCode
   ${streetAddress}=  Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     streetAddress
   ${locality}=  Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}     locality
-  ${name_ru}=  Get From Dictionary   ${ARGUMENTS[0].unit}    name_ru
+  ${name}=  Get From Dictionary   ${ARGUMENTS[0].unit}    name
   ${items_description}=   Get From Dictionary   ${ARGUMENTS[0]}               description
   ${delivery_end_date}=      Get From Dictionary   ${ARGUMENTS[0].deliveryDate}   endDate
   ${delivery_end_date}=      convert_date_to_slash_format_with_time   ${delivery_end_date}
 
   Input text                          xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-4']/input)[last()]   ${items_description}
   Input text                          xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-2']/input)[last()]   ${quantity}
-  Click Element                       xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-2']/select//option[text()='${name_ru}'])[last()]
+  Click Element                       xpath=(//div[@class='item-section']/div[@class='form-group']/div[@class='col-md-2']/select//option[text()='${name}'])[last()]
   Input text                          xpath=(//div[@class='item-section']/div[@class='form-group'][2]/div[@class='col-md-8']/input[1])[last()]   ${dkpp_id}
   Sleep  1
   Click Element                       xpath=//*[contains(text(),'${dkpp_id}')]

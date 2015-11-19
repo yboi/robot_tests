@@ -43,8 +43,6 @@ ${locator.minimalStep.amount}                                  id=mForm:data:ste
   Open Browser   ${USERS.users['${ARGUMENTS[0]}'].homepage}   ${USERS.users['${username}'].browser}   alias=${ARGUMENTS[0]}
   Set Window Size   @{USERS.users['${ARGUMENTS[0]}'].size}
   Set Window Position   @{USERS.users['${ARGUMENTS[0]}'].position}
-#  Run Keyword If   '${username}' != 'Publicbid_Viewer'   Login
-
 #login
   Sleep  2
   Click Element             xpath=//*[text()='Реєстрація/Вхід']
@@ -73,7 +71,7 @@ ${locator.minimalStep.amount}                                  id=mForm:data:ste
   ${cpv_id_1}=           Get Substring    ${cpv_id}   0   3
   ${item0_desc}=         Get From Dictionary   ${items[0]}   description
   ${dkpp_id}=            Get From Dictionary   ${items[0].additionalClassifications[0]}  id
-  ${code}=               Get From Dictionary   ${items[0].unit}          code_ru
+  ${code}=               Get From Dictionary   ${items[0].unit}          code
   ${quantity}=           Get From Dictionary   ${items[0]}                        quantity
   ${name}=               Get From Dictionary   ${INITIAL_TENDER_DATA.data.procuringEntity.contactPoint}       name
   ${latitude}=           Get From Dictionary   ${items[0].deliveryLocation}    latitude
@@ -209,7 +207,7 @@ ${locator.minimalStep.amount}                                  id=mForm:data:ste
   Sleep  5
   Click Element                      xpath=//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']
   sleep  10
-  Run keyword and ignore error   Click Element   xpath=//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']
+  Run keyword and ignore error       Click Element   xpath=//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']
   sleep  1
   Capture Page Screenshot
 
@@ -259,9 +257,6 @@ ${locator.minimalStep.amount}                                  id=mForm:data:ste
   Sleep  2
   Click Button    xpath=//span[@id='mForm:gButt']/button[2]
   Sleep  5
-#  ${Error_count}   Get Matching Xpath Count   xpath=//*[./text()='Загальна помилка'
-#  ${Error_count}   Convert To Number   ${Error_count}
-#  Run keyword if   '${Error_count}' > 0   Run keywords   Capture Page Screenshot   AND   Reload Page   AND   Fail  App contains bug
   Wait Until Page Contains  Збережено!   40
   Sleep  3
   Capture Page Screenshot
@@ -297,7 +292,7 @@ ${locator.minimalStep.amount}                                  id=mForm:data:ste
   Sleep  5
   Input Text                         id=mForm:data:desc   ${description}
   Click Element                      id=mForm:bSave
-  Wait Until Page Contains Element   Збережено!   10
+  Wait Until Page Contains   Збережено!   10
 
 додати предмети закупівлі
   [Arguments]  @{ARGUMENTS}
@@ -320,7 +315,6 @@ ${locator.minimalStep.amount}                                  id=mForm:data:ste
 Отримати тест із поля і показати на сторінці
   [Arguments]   ${fieldname}
   sleep  3
-#  відмітити на сторінці поле з тендера   ${fieldname}   ${locator.${fieldname}}
   ${return_value}=   Get Text  ${locator.${fieldname}}
   [return]  ${return_value}
 
@@ -370,8 +364,8 @@ Change_day_to_month
   [Arguments]  @{ARGUMENTS}
   [Documentation]
   ...      ${ARGUMENTS[0]}  ==  date
-  ${day}=   Get Substring   ${ARGUMENTS[0]}   0   2
-  ${month}=   Get Substring   ${ARGUMENTS[0]}  3   6
+  ${day}=    Get Substring   ${ARGUMENTS[0]}   0   2
+  ${month}=  Get Substring   ${ARGUMENTS[0]}  3   6
   ${year}=   Get Substring   ${ARGUMENTS[0]}   5
   ${return_value}=   Convert To String  ${month}${day}${year}
   [return]  ${return_value}
@@ -455,13 +449,11 @@ Change_day_to_month
 
 отримати інформацію про items[0].unit.code
   ${return_value}=   Отримати значення із поля і показати на сторінці   items[0].unit.code
-  ${return_value}=   Run Keyword If   '${return_value}' == 'H87 штуки'   Convert To String   кг.
-  [return]  ${return_value}
+  [return]  ${return_value.split(' ')[1]}
 
 отримати інформацію про items[0].unit.name
   ${return_value}=   Отримати значення із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run Keyword If   '${return_value}' == 'H87 штуки'   Convert To String   кг.
-  [return]  ${return_value}
+  [return]  ${return_value.split(' ')[1]}
 
 отримати інформацію про items[0].quantity
   ${return_value}=   Отримати значення із поля і показати на сторінці   items[0].quantity
@@ -474,25 +466,33 @@ Change_day_to_month
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} ==  ${test_bid_data}
+  ${bid}=     Get From Dictionary   ${ARGUMENTS[2].data.value}   amount
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
   publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Sleep  2
   Click Element         xpath=//span[@id='mForm:datalist:0:gButt1']/button[1]
-  Sleep  30
-  Reload page
-  Wait Until Page Contains Element     xpath=//*[text()='Зареєструвати пропозицію']  20
-  Click Element                        xpath=//*[text()='Зареєструвати пропозицію']
-  Wait Until Page Contains Element     id=mForm:data:amount  10
-  Input text    id=mForm:data:amount   5000
-  Input text    id=mForm:data:rName    ${fake_name}
-  Input text    id=mForm:data:rPhone   ${telephone}
-  Input text    id=mForm:data:rMail    ${mail}
-  Click Element                        xpath=//span[@id='mForm:gButt1']/button[1]
-  Sleep  3
+
+  : FOR    ${INDEX}    IN RANGE    1    10
+  \   Reload page
+  \   Sleep  3
+  \   ${count}=  Get Matching Xpath Count  xpath=//*[text()='Зареєструвати пропозицію']
+  \   Exit For Loop If   '${count}' == '1'
+
   Click Element                      xpath=//*[text()='Зареєструвати пропозицію']
-  Sleep  2
-  Click Element                      xpath=//div[@id='mForm:opt1']//span
+  Wait Until Page Contains Element   id=mForm:data:amount  10
+  Input text                         id=mForm:data:amount   ${bid}
+  Input text                         id=mForm:data:rName    ${fake_name}
+  Input text                         id=mForm:data:rPhone   ${telephone}
+  Input text                         id=mForm:data:rMail    ${mail}
+  Click Element                      xpath=//span[@id='mForm:gButt1']/button[1]
+  Wait Until Page Contains Element   xpath=//*[text()='Зареєструвати пропозицію']  10
+  Click Element                      xpath=//*[text()='Зареєструвати пропозицію']
+  Sleep  3
+  Wait Until Page Contains Element   xpath=//*[text()='Подати пропозицію']  10
   Click Element                      xpath=//*[text()='Подати пропозицію']
+  Sleep  2
+  Go To   ${USERS.users['${ARGUMENTS[0]}'].homepage}
+  Sleep  2
 
 
 скасувати цінову пропозицію
@@ -501,10 +501,13 @@ Change_day_to_month
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  Wait Until Page Contains Element
-  Click Element                  xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']
+  Sleep  2
+  Wait Until Page Contains Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']   10
+  Click Element                      xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']
   Wait Until Page Contains Element   xpath=//li[@class='ui-menuitem ui-widget ui-corner-all']//span[./text()='Мої пропозиції']  10
   Click Element                      xpath=//li[@class='ui-menuitem ui-widget ui-corner-all']//span[./text()='Мої пропозиції']
+  Wait Until Page Contains Element   xpath=//div[@id='mForm:propsRee_paginator_bottom']//span[@class='ui-icon ui-icon-seek-end']  10
+  Click Element                      xpath=//div[@id='mForm:propsRee_paginator_bottom']//span[@class='ui-icon ui-icon-seek-end']
   Wait Until Page Contains Element   xpath=(//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e'])[last()]   10
   Click Element                      xpath=(//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e'])[last()]
   Wait Until Page Contains Element   xpath=//*[text()='Видалити пропозицію']   10
@@ -520,24 +523,16 @@ Change_day_to_month
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} ==  bid
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  DEBUG
   Click Element                  xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']
   Sleep  2
   Click Element                  xpath=//li[@class='ui-menuitem ui-widget ui-corner-all']//span[./text()='Мої пропозиції']
   Sleep  2
   Click Element                  xpath=(//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e'])[3]
   Sleep  2
-  Run keyword if   '${TEST NAME}' == 'Можливість змінити повторну цінову пропозицію до 50000'     Змінити до 50000
-  Run keyword if   '${TEST NAME}' != 'Можливість змінити повторну цінову пропозицію до 10'        Змінити до 10
-   sleep  2
+  Input text                     id=mForm:propsRee:2:data:amount    ${ARGUMENTS[2]}
+  sleep  2
   Click Element                  xpath=//span[@class='ui-button-text ui-c'][./text()='Відкрити детальну інформацію']
   Capture Page Screenshot
-
-Змінити до 50000
-  Input text      id=mForm:propsRee:2:data:amount    5000
-
-Змінити до 10
-  Input text      id=mForm:propsRee:2:data:amount    10
 
 Задати питання
   [Arguments]  @{ARGUMENTS}
@@ -637,7 +632,7 @@ Change_day_to_month
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} ==  bid
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  ${file_path}=        local_path_to_file   TestDocument.docx
+  ${file_path}=                  local_path_to_file   TestDocument.docx
   Click Element                  xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']
   Sleep  2
   Click Element                  xpath=//li[@class='ui-menuitem ui-widget ui-corner-all']//span[./text()='Мої пропозиції']
@@ -648,7 +643,7 @@ Change_day_to_month
   Sleep  2
   Click Element                  xpath=(//div[@class='ui-outputpanel ui-widget']/button/span[@class='ui-button-text ui-c'])[1]
   Sleep  2
-  Choose File             id=mForm:data:qFile_input          ${file_path}
+  Choose File                    id=mForm:data:qFile_input          ${file_path}
   Sleep  2
   Click Element                  xpath=//span[@id='mForm:gButt1']/button[2]
   Capture Page Screenshot
@@ -663,17 +658,33 @@ Change_day_to_month
   ${answer}=     Get From Dictionary  ${ARGUMENTS[3].data}  answer
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
   publicbid.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
-  Wait Until Page Contains Element    xpath=//span[@class='ui-button-text ui-c'][./text()='Обговорення']
-  Click Element    xpath=//span[@class='ui-button-text ui-c'][./text()='Обговорення']
-  Wait Until Page Contains Element    xpath=//*[text()='Відповісти']   10
+  Wait Until Page Contains Element   xpath=//span[@class='ui-button-text ui-c'][./text()='Обговорення']
+  Click Element                      xpath=//span[@class='ui-button-text ui-c'][./text()='Обговорення']
+  Wait Until Page Contains Element   xpath=//*[text()='Відповісти']   10
   Click Element                      xpath=//*[text()='Відповісти']
   Wait Until Page Contains Element   id=mForm:messT   10
   Input text                         id=mForm:messT   Title
   Input text                         id=mForm:messQ   ${answer}
-  Click Element    xpath=(//*[text()='Відповісти'])[2]
+  Click Element                      xpath=(//*[text()='Відповісти'])[2]
 
 Отримати інформацію про questions[0].answer
   ${return_value}=   Отримати тест із поля і показати на сторінці   questions[0].answer
   ${return_value}   Remove String   ${return_value}   Title
   ${return_value}   Get Substring   ${return_value}        1
   [return]  ${return_value}
+
+Отримати інформацію із тендера про bids
+  [Arguments]  @{ARGUMENTS}
+  [Documentation]
+  ...      ${ARGUMENTS[0]} ==  username
+  ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
+  Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
+  Sleep  2
+  Wait Until Page Contains Element   xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']   10
+  Click Element                      xpath=//td[@class='ui-panelgrid-cell banner_menu_item']//a[./text()='Мій кабінет']
+  Wait Until Page Contains Element   xpath=//li[@class='ui-menuitem ui-widget ui-corner-all']//span[./text()='Мої пропозиції']  10
+  Click Element                      xpath=//li[@class='ui-menuitem ui-widget ui-corner-all']//span[./text()='Мої пропозиції']
+  Wait Until Page Contains Element   xpath=//div[@id='mForm:propsRee_paginator_bottom']//span[@class='ui-icon ui-icon-seek-end']  10
+  Click Element                      xpath=//div[@id='mForm:propsRee_paginator_bottom']//span[@class='ui-icon ui-icon-seek-end']
+  Wait Until Page Contains Element   xpath=(//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e'])[last()]   10
+  Click Element                      xpath=(//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e'])[last()]

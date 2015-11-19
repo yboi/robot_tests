@@ -213,7 +213,6 @@ def newtend_date_picker_index(isodate):
     return mod + iso_dt.day
 
 def Update_data_for_Newtend(INITIAL_TENDER_DATA):
-    #INITIAL_TENDER_DATA.data.items[0].classification['description'] = u"Картонки"
     INITIAL_TENDER_DATA.data.procuringEntity['name'] = u"openprocurement"
     return INITIAL_TENDER_DATA
 

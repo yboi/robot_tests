@@ -144,7 +144,7 @@ Set datetime
   ${cpv}=                     Get From Dictionary   ${ARGUMENTS[0].classification}         description
   ${dkpp_desc}=               Get From Dictionary   ${ARGUMENTS[0].additionalClassifications[0]}   description
   ${dkpp_id}=                 Get From Dictionary   ${ARGUMENTS[0].additionalClassifications[0]}   id
-  ${unit}=                    Get From Dictionary   ${ARGUMENTS[0].unit}                           name_ru
+  ${unit}=                    Get From Dictionary   ${ARGUMENTS[0].unit}                           name
   ${deliverydate_end_date}=   Get From Dictionary   ${ARGUMENTS[0].deliveryDate}   endDate
   ${countryName}=             Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}   countryName
   ${ZIP}=                     Get From Dictionary   ${ARGUMENTS[0].deliveryAddress}   postalCode
