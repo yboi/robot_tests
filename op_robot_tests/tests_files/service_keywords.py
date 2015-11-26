@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -
 import os
+import pprint
 from munch import munchify, Munch, fromYAML
 from json import load
 from iso8601 import parse_date
@@ -163,11 +164,6 @@ def wait_to_date(date_stamp):
     return wait_seconds
 
 ##GUI Frontends common
-def convert_date_to_slash_format(isodate):
-    iso_dt=parse_date(isodate)
-    date_string = iso_dt.strftime("%d/%m/%Y")
-    return  date_string
-
 def local_path_to_file(file_name):
     path = os.getcwd()
     path = path.split("brokers", 1)[0] + "/src/op_robot_tests/op_robot_tests/tests_files/documents/" + file_name
@@ -245,3 +241,34 @@ def convert_date_to_slash_format_with_time(isodate):
     iso_dt=parse_date(isodate)
     date_string = iso_dt.strftime("%d/%m/%Y %H:%M")
     return  date_string
+
+#Netcast
+def convert_date_to_slash_format(isodate):
+    iso_dt=parse_date(isodate)
+    date_string = iso_dt.strftime("%d/%m/%Y")
+    return  date_string
+
+def update_date_for_netcast(INITIAL_TENDER_DATA):
+    test_date = datetime.now()
+    newdate = test_date.replace(hour=16, minute=00)
+    INITIAL_TENDER_DATA.data.enquiryPeriod.endDate = (newdate + timedelta(days=4)).isoformat()
+    INITIAL_TENDER_DATA.data.tenderPeriod.startDate = (newdate + timedelta(days=4)).isoformat()
+    INITIAL_TENDER_DATA.data.tenderPeriod.endDate = (newdate + timedelta(days=9)).isoformat()
+    #INITIAL_TENDER_DATA.items.deliveryDate.endDate = (newdate + timedelta(days=10)).isoformat()
+    return INITIAL_TENDER_DATA
+
+#def datetime_for_netcast(items):
+#    test_date = datetime.now()
+#    newdate = test_date.replace(hour=16, minute=00)
+#    items['deliveryDate']['endDate'] = (newdate + timedelta(days=10)).isoformat()
+#    return items
+
+#map(datetime_for_netcast, items)
+
+
+def datetime_for_netcast(INITIAL_TENDER_DATA):
+    test_date = datetime.now()
+    newdate = test_date.replace(hour=16, minute=00)
+    return {
+        'deliveryDate': (newdate + timedelta(days=10)).isoformat()
+    }
