@@ -166,7 +166,9 @@ def wait_to_date(date_stamp):
 ##GUI Frontends common
 def local_path_to_file(file_name):
     path = os.getcwd()
-    path = path.split("brokers", 1)[0] + "/src/op_robot_tests/op_robot_tests/tests_files/documents/" + file_name
+    path = path.split("brokers", 1)[0] + "/op_robot_tests/tests_files/documents/" + file_name
+    ##Закоментований рядок для тестування на брудній мишині
+    #path = path.split("brokers", 1)[0] + "/src/op_robot_tests/op_robot_tests/tests_files/documents/" + file_name
     return path
 
 ## E-Tender
