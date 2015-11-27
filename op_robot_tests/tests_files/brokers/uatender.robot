@@ -8,24 +8,12 @@ ${locator.tenderId}                                            xpath=//h2
 ${locator.title}                                               xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[2]
 ${locator.description}                                         xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[2]
 ${locator.value.amount}                                        xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[2]
-${locator.minimalStep.amount}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[2]
+${locator.minimalStep.amount}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[1]
 ${locator.procuringEntity.name}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[4]
-${locator.tenderPeriod.startDate}                              xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[1]
-${locator.tenderPeriod.endDate}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[1]
-${locator.enquiryPeriod.startDate}                             xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[1]
-${locator.enquiryPeriod.endDate}                               xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[1]
-#${locator.items[0].description}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[3]
-#${locator.items[0].deliveryDate.endDate}                       xpath=//table[@class='table table-striped table-bordered']/tbody/tr[6]/td
-#${locator.items[0].deliveryAddress.countryName}                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[1]
-#${locator.items[0].classification.scheme}                      xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/th)[3]
-#${locator.items[0].classification.id}                          xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
-#${locator.items[0].additionalClassifications[0].scheme}        xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/th)[3]
-#${locator.items[0].additionalClassifications[0].id}            xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
-#${locator.items[0].additionalClassifications[0].description}   xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[3]
-#${locator.items[0].quantity}                                   xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[3]
-#${locator.items[0].unit.code}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
-#${locator.items[0].unit.name}                                  xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[3]
-
+${locator.tenderPeriod.startDate}                              xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[3]/td)[1]
+${locator.tenderPeriod.endDate}                                xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[4]/td)[1]
+${locator.enquiryPeriod.startDate}                             xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[1]
+${locator.enquiryPeriod.endDate}                               xpath=(//table[@class='table table-striped table-bordered']/tbody/tr[2]/td)[1]
 
 #Опис
 ${locator.items[0].description}                                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[1]/td)[3]
@@ -46,11 +34,11 @@ ${locator.items[2].deliveryAddress.countryName}                xpath=(//div[@cla
 ${locator.items[3].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[4]
 ${locator.items[4].deliveryAddress.countryName}                xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[7]/td)[5]
 #Cхеми класифікації
-${locator.items[0].classification.scheme}                      xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/th)[3]
+${locator.items[0].classification.scheme}                      xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/th)[2]
 #ідентифікатора класифікації
-${locator.items[0].classification.id}                          xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
+${locator.items[0].classification.id}                          xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[2]
 #опису класифікації
-${locator.items[0].classification.description}                 xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[3]
+${locator.items[0].classification.description}                 xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[5]/td)[2]
 #схеми додаткової класифікації
 ${locator.items[0].additionalClassifications[0].scheme}        xpath=(//div[@class='container']/table[@class='table table-striped table-bordered']/tbody/tr[4]/th)[3]
 #ідентифікатора додаткової класифікації
@@ -301,7 +289,7 @@ Set Multi Ids
 отримати інформацію про procuringEntity.name
   Fail  Немає такого поля при перегляді
 
-Change_date_to_month
+Change_day_to_month
   [Arguments]  @{ARGUMENTS}
   [Documentation]
   ...      ${ARGUMENTS[0]}  ==  date
@@ -313,22 +301,22 @@ Change_date_to_month
 
 отримати інформацію про enquiryPeriod.startDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.startDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про enquiryPeriod.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   enquiryPeriod.endDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про tenderPeriod.startDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderPeriod.startDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про tenderPeriod.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderPeriod.endDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 отримати інформацію про minimalStep.amount
@@ -389,35 +377,37 @@ Change_date_to_month
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].description
   [return]  ${return_value}
 
-
 #1
 Отримати інформацію про items[0].deliveryDate.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].deliveryDate.endDate
-  [return]  ${return_value.split(' ',4)[4]}
+  ${return_value}=   Change_day_to_month   ${return_value.split(' ',4)[4]}
+  [return]  ${return_value}
 #2
 Отримати інформацію про items[1].deliveryDate.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].deliveryDate.endDate
-  [return]  ${return_value.split(' ',4)[4]}
+  ${return_value}=   Change_day_to_month   ${return_value.split(' ',4)[4]}
+  [return]  ${return_value}
 #3
 Отримати інформацію про items[2].deliveryDate.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].deliveryDate.endDate
-  [return]  ${return_value.split(' ',4)[4]}
+  ${return_value}=   Change_day_to_month   ${return_value.split(' ',4)[4]}
+  [return]  ${return_value}
 #4
 Отримати інформацію про items[3].deliveryDate.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].deliveryDate.endDate
-  [return]  ${return_value.split(' ',4)[4]}
+  ${return_value}=   Change_day_to_month   ${return_value.split(' ',4)[4]}
+  [return]  ${return_value}
 #5
 Отримати інформацію про items[4].deliveryDate.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].deliveryDate.endDate
-  [return]  ${return_value.split(' ',4)[4]}
-
+  ${return_value}=   Change_day_to_month   ${return_value.split(' ',4)[4]}
+  [return]  ${return_value}
 
 отримати інформацію про items[0].deliveryLocation.latitude
   Fail  Немає такого поля при перегляді
 
 отримати інформацію про items[0].deliveryLocation.longitude
   Fail  Немає такого поля при перегляді
-
 
 #1
 Отримати інформацію про items[0].deliveryAddress.countryName
@@ -531,27 +521,22 @@ Change_date_to_month
 #1
 отримати інформацію про items[0].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryAddress.countryName
-#  ${return_value}=   Get Substring    ${return_value}   46
   [return]  ${return_value.split(' ',5)[5]}
 #2
 отримати інформацію про items[1].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].deliveryAddress.countryName
-#  ${return_value}=   Get Substring    ${return_value}   42
   [return]  ${return_value.split(' ',5)[5]}
 #3
 отримати інформацію про items[2].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].deliveryAddress.countryName
-#  ${return_value}=   Get Substring    ${return_value}   45
   [return]  ${return_value.split(' ',5)[5]}
 #4
 отримати інформацію про items[3].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].deliveryAddress.countryName
-#  ${return_value}=   Get Substring    ${return_value}   45
   [return]  ${return_value.split(' ',5)[5]}
 #5
 отримати інформацію про items[4].deliveryAddress.streetAddress
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].deliveryAddress.countryName
-#  ${return_value}=   Get Substring    ${return_value}   45
   [return]  ${return_value.split(' ',5)[5]}
 
 #1
@@ -574,7 +559,6 @@ Change_date_to_month
 отримати інформацію про items[4].classification.scheme
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.scheme
   [return]  ${return_value.split(' ')[1]}
-
 
 #1
 отримати інформацію про items[0].classification.id
@@ -684,53 +668,43 @@ Change_date_to_month
 #1
 отримати інформацію про items[0].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #2
 отримати інформацію про items[1].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #3
 отримати інформацію про items[2].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #4
 отримати інформацію про items[3].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #5
 отримати інформацію про items[4].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 
 #1
 отримати інформацію про items[0].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #2
 отримати інформацію про items[1].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #3
 отримати інформацію про items[2].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #4
 отримати інформацію про items[3].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 #5
 отримати інформацію про items[4].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  ${return_value}=   Run keyword if    '${return_value}' == 'штуки'   Convert To String  кг.
   [return]  ${return_value}
 
 #1

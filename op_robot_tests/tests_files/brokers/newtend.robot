@@ -59,9 +59,6 @@ Login
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  initial_tender_data
 ## Inicialisation
-  #${prepared_tender_data}=   Add_data_for_GUI_FrontEnds   ${ARGUMENTS[1]}
-#  ${INITIAL_TENDER_DATA}=  Add_data_for_GUI_FrontEnds  ${INITIAL_TENDER_DATA}
-# ${INITIAL_TENDER_DATA}=  Update_data_for_Newtend  ${INITIAL_TENDER_DATA}
   ${items}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               items
   ${title}=         Get From Dictionary   ${INITIAL_TENDER_DATA.data}               title
   ${description}=   Get From Dictionary   ${INITIAL_TENDER_DATA.data}               description
@@ -127,8 +124,8 @@ Set datetime
   ${datapicker_id}=   Convert To String       ${datapicker_id}${date_index}
   Click Element       xpath=//input[@id="${ARGUMENTS[0]}"]/..//td[@id="${datapicker_id}"]/button
 #Set time
-  ${hous}=   Get Substring   ${ARGUMENTS[1]}   11   13
-  ${minutes}=   Get Substring   ${ARGUMENTS[1]}   14   16
+  ${hous}=     Get Substring   ${ARGUMENTS[1]}   11   13
+  ${minutes}=  Get Substring   ${ARGUMENTS[1]}   14   16
   Input text   xpath=//input[@id="${ARGUMENTS[0]}"]/../..//input[@ng-model="hours"]   ${hous}
   Input text   xpath=//input[@id="${ARGUMENTS[0]}"]/../..//input[@ng-model="minutes"]   ${minutes}
 
@@ -178,9 +175,9 @@ Set datetime
 # Add item main info
   Click Element                      xpath=//a[contains(text(), "одиниці виміру")]
   Click Element                      xpath=//a[contains(text(), "одиниці виміру")]/..//a[contains(text(), '${unit}')]
-  Input text   id=quantity${ARGUMENTS[1]}          ${quantity}
-  Input text   id=itemDescription${ARGUMENTS[1]}   ${items_description}
-  Set datetime    end-date-delivery${ARGUMENTS[1]}         ${deliverydate_end_date}
+  Input text                         id=quantity${ARGUMENTS[1]}          ${quantity}
+  Input text                         id=itemDescription${ARGUMENTS[1]}   ${items_description}
+  Set datetime                       end-date-delivery${ARGUMENTS[1]}         ${deliverydate_end_date}
 
 Додати багато придметів
   [Arguments]  @{ARGUMENTS}
@@ -226,15 +223,6 @@ Set datetime
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
   Switch browser   ${ARGUMENTS[0]}
-### Індексація на тестовому сервері відключена, як наслідок пошук по UAid не працює, отож застосовую обхід цієї функціональності для розблокування наступних тестів
-#  Wait Until Page Contains Element   xpath=//div[@class="search-field"]/input   20
-#  #${ARGUMENTS[1]}=   Convert To String   UA-2015-06-08-000023
-#  Input text                         xpath=//div[@class="search-field"]/input   ${ARGUMENTS[1]}
-#  : FOR    ${INDEX}    IN RANGE    1    30
-#  \   Log To Console   .   no_newline=true
-#  \   sleep       1
-#  \   ${count}=   Get Matching Xpath Count   xpath=//a[@class="row tender-info ng-scope"]
-#  \   Exit For Loop If  '${count}' == '1'
   Go to   ${USERS.users['${ARGUMENTS[0]}'].homepage}
   ${ARGUMENTS[1]}=   Convert To String   Воркераунд для проходженя наступних тестів - пошук не працює.
   Wait Until Page Contains Element   xpath=//*[contains(text(),'UA')]   10
@@ -385,12 +373,10 @@ Set datetime
 ##item
 отримати інформацію про items[0].unit.name
   ${unit_name}=   отримати текст із поля і показати на сторінці   items[0].unit.name
-  ${unit_name}=   Run Keyword If   '${unit_name}' == 'штуки'   Convert To String   кг.
   [return]  ${unit_name}
 
 отримати інформацію про items[0].unit.code
   ${unit_code}=   отримати текст із поля і показати на сторінці   items[0].unit.name
-  ${unit_code}=   Run Keyword If   '${unit_code}' == 'штуки'   Convert To String   кг.
   [return]  ${unit_code}
 
 отримати інформацію про items[0].quantity
@@ -460,7 +446,6 @@ Set datetime
   Reload Page
   sleep  10
   Click Element                      xpath=(//a[@class="row tender-info ng-scope"])
-#  Reload Page
   Wait Until Page Contains   ${ARGUMENTS[1]}   20
 
 отримати інформацію про QUESTIONS[0].title

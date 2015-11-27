@@ -149,8 +149,8 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Input text    id=description       ${description}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//input[@name='enqPEndDate']   ${enquiry_end_date}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//div[contains(@class, 'col-sm-2')]//input[@ng-model='data.enquiryPeriod.endDate']   ${enquiry_end_time}
+  Input text    xpath=//div[contains(@class, 'col-sm-2')]//input[@ng-model='data.tenderPeriod.startDate']   ${start_time}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//input[@name='startDate']   ${start_date}
-  Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//div[contains(@class, 'col-sm-2')]//input[@ng-model='data.tenderPeriod.startDate']   ${start_time}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//input[@name='endDate']   ${end_date}
   Input text    xpath=//div[contains(@class, 'form-group col-sm-8')]//div[contains(@class, 'col-sm-2')]//input[@ng-model='data.tenderPeriod.endDate']   ${end_time}
   Sleep  2
@@ -200,8 +200,7 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Input text    xpath=(//input[@ng-model='data.items[$index].deliveryDate.endDate'])[last()]   ${deliveryDate}
   Input text    xpath=(//div[@class='form-group col-xs-3']/input[@placeholder='Широта'])[last()]   ${latitude}
   Input text    xpath=(//input[@ng-model='data.items[$index].deliveryLocation.longitude'])[last()]  ${longitude}
-  Wait Until Page Contains Element    xpath=(//select[@class='form-control ng-pristine ng-untouched ng-invalid ng-invalid-required']/option[@value='kilogram'])[last()]  10
-  Click Element  xpath=(//select[@class='form-control ng-pristine ng-untouched ng-invalid ng-invalid-required']/option[@value='kilogram'])[last()]
+  Click Element   xpath=.//*[@id='itemsUnit${ARGUMENTS[1]}']/option[@value='piece']
 #CPV
   Click Element                      xpath=(//div[contains(@class, 'col-sm-2')]//input[@class="btn btn-danger"])
   Wait Until Element Is Visible      xpath=//input[@ng-model="searchstring"]  10
@@ -233,20 +232,6 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   \   Click Element   xpath=//*[text()=' Додати ще один предмет закупівлі']
   \   Додати предмет   ${items[${INDEX}]}   ${INDEX}
 
-Завантажити документ
-  [Arguments]  @{ARGUMENTS}
-  [Documentation]
-  ...    ${ARGUMENTS[0]} =  username
-  ...    ${ARGUMENTS[1]} =  ${file_path}
-  ...    ${ARGUMENTS[2]} =  ${TENDER_UAID}
-#  ${filepath}=   local_path_to_file   TestDocument.docx
-#  Selenium2Library.Switch Browser   ${ARGUMENTS[0]}
-#  etender.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}    ${ARGUMENTS[2]}
-#  Wait Until Page Contains Element   xpath=//button[text()="Завантажити"]    10
-#  Choose File   xpath=//button[text()="Завантажити"]      http://uploadhost.com/trades.csv
-#  Choose File   xpath=//button[text()="Завантажити"]     ${filepath}
-  Fail   Поки не ралізовано тест
-
 Пошук тендера по ідентифікатору
   [Arguments]  @{ARGUMENTS}
   [Documentation]
@@ -257,8 +242,6 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Wait Until Page Contains   Прозорі закупівлі    10
   sleep  1
   Input Text  jquery=input[ng-change='searchChange()']  ${ARGUMENTS[1]}
-  sleep  1
-  Wait Until Keyword Succeeds  300 s  0 s  Шукати і знайти
   sleep  3
   Click Link    jquery=a[href^="#/tenderDetailes"]
   Wait Until Page Contains    ${ARGUMENTS[1]}   10
@@ -297,7 +280,9 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   ...      ${ARGUMENTS[2]} ==  ${test_bid_data}
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
   ${bid}=        Get From Dictionary   ${ARGUMENTS[2].data.value}         amount
+  Sleep  30
   etender.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
+  DEBUG
   Wait Until Page Contains          Інформація про процедуру закупівлі    10
   Wait Until Page Contains Element          id=amount   10
   Input text    id=amount   ${bid}
@@ -365,7 +350,7 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Click Element                      jquery=a[href^="#/addQuestion/"]
   Wait Until Page Contains Element   id=title   10
   Input text                         id=title                 ${title}
-  Input text                         id=description           ${description}
+  Input text                         xpath=//textarea[@id=' description']           ${description}
   Click Element                      xpath=//div[contains(@class, 'form-actions')]//button[@type='submit']
 
 Відповісти на питання
@@ -425,10 +410,11 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   Sleep  2
   Click Element   xpath=(//button[@class='btn btn-danger ng-scope'])[last()]
   Sleep  1
-  : FOR    ${INDEX}    IN RANGE    1    ${ARGUMENTS[2]} +1
+  : FOR    ${INDEX}    IN RANGE    2    ${ARGUMENTS[2]} +2
   \   Click Element   xpath=//*[text()=' Додати ще один предмет закупівлі']
   \   Додати предмет   ${items[${INDEX}]}   ${INDEX}
   Sleep  3
+  DEBUG
   Click Element   xpath=//div[@class='form-actions']/button[./text()='Зберегти зміни']
   Wait Until Page Contains    [ТЕСТУВАННЯ]   10
 
@@ -436,7 +422,7 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
   etender.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Click Element                     xpath=//a[@class='btn btn-primary ng-scope']
   Sleep  2
-  : FOR    ${INDEX}    IN RANGE    1    ${ARGUMENTS[2]} +1
+  : FOR    ${INDEX}    IN RANGE    0    ${ARGUMENTS[2]}
   \   Click Element   xpath=(//button[@class='btn btn-danger ng-scope'])[last()]
   \   Sleep  1
   Sleep  3
@@ -474,13 +460,12 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
 
 Отримати інформацію про value.amount
   ${return_value}=   Отримати тест із поля і показати на сторінці   value.amount
-#  ${return_value}=   Get Substring   ${return_value}   0   6
-  ${return_value}=   Convert To Number   ${return_value.split(' ')[0]}
+  ${return_value}=   Get Substring   ${return_value}   0   6
+  ${return_value}=   Convert To Number   ${return_value}
   [return]  ${return_value}
 
 Отримати інформацію про tenderId
   ${return_value}=   Отримати тест із поля і показати на сторінці   tenderId
-#  ${return_value}=   Get Substring  ${return_value}   10
   [return]  ${return_value.split(' ')[1]}
 
 Отримати інформацію про procuringEntity.name
@@ -504,7 +489,7 @@ ${locator.questions[0].answer}                                 xpath=(//div[@tex
 
 Отримати інформацію про enquiryPeriod.endDate
   ${return_value}=   Отримати тест із поля і показати на сторінці  tenderPeriod.startDate
-  ${return_value}=   Change_date_to_month   ${return_value}
+  ${return_value}=   Change_day_to_month   ${return_value}
   [return]  ${return_value}
 
 Change_day_to_month
@@ -592,44 +577,64 @@ Change_day_to_month
 #1
 Отримати інформацію про items[0].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #2
 Отримати інформацію про items[1].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #3
 Отримати інформацію про items[2].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #4
 Отримати інформацію про items[3].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #5
 Отримати інформацію про items[4].unit.name
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 
 #1
 Отримати інформацію про items[0].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #2
 Отримати інформацію про items[1].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[1].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #3
 Отримати інформацію про items[2].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[2].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String  ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #4
 Отримати інформацію про items[3].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[3].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 #5
 Отримати інформацію про items[4].unit.code
   ${return_value}=   Отримати тест із поля і показати на сторінці   items[4].unit.name
-  [return]  ${return_value.split(' ')[1]}
+  ${return_value}=   Remove String   ${return_value.split(' ')[1]}   .
+  ${return_value}=   Run keyword if    '${return_value}'== 'шт'   Convert To String  штуки
+  [return]  ${return_value}
 
 #1
 Отримати інформацію про items[0].quantity
@@ -707,27 +712,22 @@ Change_day_to_month
 #1
 Отримати інформацію про items[0].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-#  ${return_value}=   Get Substring  ${return_value}   11
   [return]  ${return_value.split(' ',1)[1]}
 #2
 Отримати інформацію про items[1].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-#  ${return_value}=   Get Substring  ${return_value}   11
   [return]  ${return_value.split(' ',1)[1]}
 #3
 Отримати інформацію про items[2].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-#  ${return_value}=   Get Substring  ${return_value}   11
   [return]  ${return_value.split(' ',1)[1]}
 #4
 Отримати інформацію про items[3].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-#  ${return_value}=   Get Substring  ${return_value}   11
   [return]  ${return_value.split(' ',1)[1]}
 #5
 Отримати інформацію про items[4].classification.description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].classification.description
-#  ${return_value}=   Get Substring  ${return_value}   11
   [return]  ${return_value.split(' ',1)[1]}
 
 #1
@@ -780,27 +780,22 @@ Change_day_to_month
 #1
 Отримати інформацію про items[0].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[0].additionalClassifications[0].description
-#  ${return_value}=   Get Substring  ${return_value}   15
   [return]  ${return_value.split(' ',1)[1]}
 #2
 Отримати інформацію про items[1].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[1].additionalClassifications[0].description
-#  ${return_value}=   Get Substring  ${return_value}   15
   [return]  ${return_value.split(' ',1)[1]}
 #3
 Отримати інформацію про items[2].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[2].additionalClassifications[0].description
-#  ${return_value}=   Get Substring  ${return_value}   15
   [return]  ${return_value.split(' ',1)[1]}
 #4
 Отримати інформацію про items[3].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[3].additionalClassifications[0].description
-#  ${return_value}=   Get Substring  ${return_value}   15
   [return]  ${return_value.split(' ',1)[1]}
 #5
 Отримати інформацію про items[4].additionalClassifications[0].description
   ${return_value}=   Отримати тест із поля і показати на сторінці  items[4].additionalClassifications[0].description
-#  ${return_value}=   Get Substring  ${return_value}   15
   [return]  ${return_value.split(' ',1)[1]}
 
 #1

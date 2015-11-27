@@ -654,33 +654,18 @@ Change_day_to_month
 
 #1
 отримати інформацію про items[0].deliveryDate.endDate
-#  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryDate.endDate
-#  ${return_value}=   Change_day_to_month   ${return_value}
-#  [return]  ${return_value}
   Fail  неможливо звірити тому що період доставки мінімальний 10 днів
 #2
 отримати інформацію про items[1].deliveryDate.endDate
-#  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryDate.endDate
-#  ${return_value}=   Change_day_to_month   ${return_value}
-#  [return]  ${return_value}
   Fail  неможливо звірити тому що період доставки мінімальний 10 днів
 #3
 отримати інформацію про items[2].deliveryDate.endDate
-#  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryDate.endDate
-#  ${return_value}=   Change_day_to_month   ${return_value}
-#  [return]  ${return_value}
   Fail  неможливо звірити тому що період доставки мінімальний 10 днів
 #4
 отримати інформацію про items[3].deliveryDate.endDate
-#  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryDate.endDate
-#  ${return_value}=   Change_day_to_month   ${return_value}
-#  [return]  ${return_value}
   Fail  неможливо звірити тому що період доставки мінімальний 10 днів
 #5
 отримати інформацію про items[4].deliveryDate.endDate
-#  ${return_value}=   Отримати тест із поля і показати на сторінці   items[0].deliveryDate.endDate
-#  ${return_value}=   Change_day_to_month   ${return_value}
-#  [return]  ${return_value}
   Fail  неможливо звірити тому що період доставки мінімальний 10 днів
 
 #1
@@ -890,9 +875,6 @@ Change_day_to_month
   Choose File                    xpath= //input[@name='upload']    ${file_path}
   sleep  1
   Click Element                  name=do
-
-
-
 
 отримати інформацію про items[0].deliveryLocation.longitude
   Fail  Немає таких даних
