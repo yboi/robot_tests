@@ -28,7 +28,7 @@ def get_now():
     return datetime.now(TZ)
 
 def get_date():
-	return get_now().isoformat()
+    return get_now().isoformat()
 
 def get_file_contents(path):
     with open(path, 'r') as f:
@@ -103,14 +103,12 @@ def load_initial_data_from(file_name):
         elif file_name.endswith(".yaml"):
             return fromYAML(file_obj)
 
-
-def prepare_test_tender_data(period_interval=2, mode='single'):
+def prepare_test_tender_data(enquiry_interval, tender_interval, mode='single'):
     if mode == 'single':
-        return munchify({'data': test_tender_data(period_interval=period_interval)})
+        return munchify({'data': test_tender_data(enquiry_interval=enquiry_interval, tender_interval=tender_interval)})
     elif mode == 'multi':
-        return munchify({'data': test_tender_data_multiple_lots(period_interval=period_interval)})
+        return munchify({'data': test_tender_data_multiple_lots(enquiry_interval=enquiry_interval, tender_interval=tender_interval)})
     raise ValueError('A very specific bad thing happened')
-
 
 def run_keyword_and_ignore_keyword_definitions(name, *args):
     """Runs the given keyword with given arguments and returns the status as a Boolean value.

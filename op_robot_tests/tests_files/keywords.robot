@@ -86,8 +86,9 @@ Get Broker Property By Username
   ${reply}=  test_complaint_reply_data
   Append to list   ${REPLIES}   ${reply}
   Set Global Variable  ${REPLIES}
-  ${period_interval}=  Get Broker Property By Username  ${tender_owner}  period_interval
-  ${INITIAL_TENDER_DATA}=  prepare_test_tender_data  ${period_interval}  ${mode}
+  ${enquiry_interval}=  Get Broker Property By Username  ${tender_owner}  enquiry_interval
+  ${tender_interval}=  Get Broker Property By Username  ${tender_owner}  tender_interval
+  ${INITIAL_TENDER_DATA}=  prepare_test_tender_data  ${enquiry_interval}  ${tender_interval}  ${mode}
   Set Global Variable  ${INITIAL_TENDER_DATA}
   ${TENDER}=  Create Dictionary
   Set Global Variable  ${TENDER}

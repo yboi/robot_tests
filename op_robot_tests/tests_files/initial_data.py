@@ -25,7 +25,7 @@ def create_fake_doc():
     return tf.name
 
 
-def test_tender_data(period_interval):
+def test_tender_data(enquiry_interval, tender_interval):
     now = get_now()
     return {
         "title": u"[ТЕСТУВАННЯ] " + fake.catch_phrase(),
@@ -109,11 +109,11 @@ def test_tender_data(period_interval):
         ],
         "enquiryPeriod": {
             "startDate": (now).isoformat(),
-            "endDate": (now + timedelta(minutes=1)).isoformat()
+            "endDate": (now + timedelta(minutes=(1 + enquiry_interval))).isoformat()
         },
         "tenderPeriod": {
-            "startDate": (now + timedelta(minutes=2)).isoformat(),
-            "endDate": (now + timedelta(minutes=(2 + period_interval))).isoformat()
+            "startDate": (now + timedelta(minutes=(2 + enquiry_interval))).isoformat(),
+            "endDate": (now + timedelta(minutes=(2 + tender_interval))).isoformat()
         }
     }
 
@@ -212,7 +212,7 @@ def prom_test_tender_data():
     }
 
 
-def test_tender_data_multiple_lots(period_interval):
+def test_tender_data_multiple_lots(enquiry_interval, tender_interval):
     now = get_now()
     return {
         "title": fake.catch_phrase(),
@@ -416,11 +416,11 @@ def test_tender_data_multiple_lots(period_interval):
         ],
         "enquiryPeriod": {
             "startDate": (now).isoformat(),
-            "endDate": (now + timedelta(minutes=1)).isoformat()
+            "endDate": (now + timedelta(minutes=(1 + enquiry_interval))).isoformat()
         },
         "tenderPeriod": {
-            "startDate": (now + timedelta(minutes=2)).isoformat(),
-            "endDate": (now + timedelta(minutes=(2 + period_interval))).isoformat()
+            "startDate": (now + timedelta(minutes=(2 + enquiry_interval))).isoformat(),
+            "endDate": (now + timedelta(minutes=(2 + tender_interval))).isoformat()
         }
     }
 
