@@ -102,8 +102,7 @@ def load_initial_data_from(file_name):
             return Munch.fromDict(load(file_obj))
         elif file_name.endswith(".yaml"):
             return fromYAML(file_obj)
-
-def prepare_test_tender_data(enquiry_interval, tender_interval, mode='single'):
+def prepare_test_tender_data(enquiry_interval=0, tender_interval=3, mode='single'):
     if mode == 'single':
         return munchify({'data': test_tender_data(enquiry_interval=enquiry_interval, tender_interval=tender_interval)})
     elif mode == 'multi':
