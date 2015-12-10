@@ -2,10 +2,12 @@ Default:
     # These values are used by default unless a
     # specific broker entry overrides them.
     timeout_on_wait: 300
+    enquiry_interval: 0
+    tender_interval: 3
 Quinta:
     keywords_file: openprocurement_client
     timeout_on_wait: 15
-    enquiry_interval: 2
+    enquiry_interval: 0
     tender_interval: 3
     roles:
         tender_owner:   Tender_Owner
