@@ -51,7 +51,6 @@ Login
   Click Element   id=submit-login-button
   Wait Until Page Contains Element   xpath =//a[@class="close-modal-dialog"]  10
   Go to   ${USERS.users['${ARGUMENTS[0]}'].homepage}
-#  Wait Until Page Contains Element   xpath=//div[@class="introjs-overlay"]   20
 
 Створити тендер
   [Arguments]  @{ARGUMENTS}
@@ -289,7 +288,6 @@ Set datetime
 
 отримати інформацію про procuringEntity.name
   ${procuringEntity_name}=   отримати текст із поля і показати на сторінці   procuringEntity.name
-#  ${procuringEntity_name}=   Run keyword if    '${procuringEntity_name}' == 'openprocurement'   Convert To String  Повна назва невідомо чого
   [return]  ${procuringEntity_name}
 
 отримати інформацію про enquiryPeriod.endDate
