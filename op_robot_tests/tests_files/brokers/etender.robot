@@ -278,7 +278,6 @@ Set Multi Ids
   ...      ${ARGUMENTS[0]} = username
   ...      ${ARGUMENTS[1]} = ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} = question_data
-
   ${title}=        Get From Dictionary  ${ARGUMENTS[2].data}  title
   ${description}=  Get From Dictionary  ${ARGUMENTS[2].data}  description
 
@@ -298,7 +297,6 @@ Set Multi Ids
   ...      ${ARGUMENTS[1]} = ${TENDER_UAID}
   ...      ${ARGUMENTS[2]} = 0
   ...      ${ARGUMENTS[3]} = answer_data
-
   ${answer}=     Get From Dictionary  ${ARGUMENTS[3].data}  answer
 
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
