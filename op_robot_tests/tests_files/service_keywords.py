@@ -222,7 +222,6 @@ def newtend_date_picker_index(isodate):
     return mod + iso_dt.day
 
 def Update_data_for_Newtend(INITIAL_TENDER_DATA):
-    #INITIAL_TENDER_DATA.data.items[0].classification['description'] = u"Картонки"
     INITIAL_TENDER_DATA.data.procuringEntity['name'] = u"openprocurement"
     return INITIAL_TENDER_DATA
 
@@ -230,3 +229,9 @@ def subtract_from_time(date_time,substr_min,substr_sec):
     now = datetime.strptime(date_time,"%d.%m.%Y %H:%M")
     now = (now - timedelta(minutes=int(substr_min), seconds = int (substr_sec) )).isoformat()
     return now
+
+#uatender
+def convert_date_to_slash_format_with_time(isodate):
+    iso_dt=parse_date(isodate)
+    date_string = iso_dt.strftime("%d.%m.%Y %H:%M")
+    return  date_string

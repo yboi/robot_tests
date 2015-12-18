@@ -1,7 +1,7 @@
 Default:
     # These values are used by default unless a
     # specific broker entry overrides them.
-    timeout_on_wait: 300
+    timeout_on_wait: 30
     enquiry_interval: 0
     tender_interval: 3
 Quinta:
@@ -68,3 +68,11 @@ SmartTender:
     tender_interval: 18
     roles:
         viewer:         SmartTender_Viewer
+uatender:
+    keywords_file: uatender
+    url: http://dev.zakupki.com.ua/
+    enquiry_interval: 11
+    tender_interval: 18
+    roles:
+        tender_owner:   Ua_Owner
+        viewer:         Ua_Viewer
