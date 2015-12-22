@@ -61,6 +61,7 @@ Publicbid:
     roles:
         tender_owner:   Publicbid_Owner
         viewer:         Publicbid_Viewer
+        provider:       Publicbid_Provider
 SmartTender:
     keywords_file: smarttender
     url: http://smarttender.biz/tenders

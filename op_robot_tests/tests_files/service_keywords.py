@@ -235,3 +235,14 @@ def convert_date_to_slash_format_with_time(isodate):
     iso_dt=parse_date(isodate)
     date_string = iso_dt.strftime("%d.%m.%Y %H:%M")
     return  date_string
+
+#publicbid
+def convert_date_for_publicbid(isodate):
+    iso_dt=parse_date(isodate)
+    date_string = iso_dt.strftime("%d.%m.%Y %H:%M")
+    return  date_string
+
+def convert_date_for_publicbid_Delivery(isodate):
+    iso_dt=parse_date(isodate)
+    date_string = iso_dt.strftime("%m.%Y")
+    return  date_string
